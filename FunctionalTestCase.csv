@@ -1,0 +1,39 @@
+Test Case ID,Module,Scenario,Preconditions,Test Steps,Expected Result,Priority,Test Type (Smoke/Regression)
+TC-REG-001,User Registration,Successful new user registration with valid data,Toolshop application is accessible; user is not logged in; registration email is not already registered,"1. Navigate to the Toolshop home page.
+2. Click Sign In and select Register / Create account.
+3. Enter valid values in all mandatory fields (e.g. First Name, Last Name, Date of Birth, Street, Postal Code, City, State, Country, Phone, Email, Password).
+4. Submit the registration form.","User is registered successfully; confirmation message is displayed; user is redirected to login or home; new credentials can be used to log in.",High,Smoke
+TC-LOG-001,Login,Successful login with valid registered credentials,User account exists and is active; user is logged out,"1. Navigate to the Toolshop home page.
+2. Click Sign In.
+3. Enter a valid registered email and correct password.
+4. Click Login / Sign In.","User is authenticated successfully; welcome message or user name is displayed; cart and profile options are available.",High,Smoke
+TC-SRH-001,Search Product,Search returns matching products for a valid keyword,Application is on home or catalog page; at least one product exists in catalog,"1. Locate the search field on the home page.
+2. Enter a known product name or keyword (e.g. ""Hammer"").
+3. Click Search or press Enter.
+4. Review the search results list.","Search results display one or more products matching the keyword; product name and price are visible; no error message is shown.",High,Regression
+TC-PRD-001,Product Details,View complete product details from search results,User is on search results or catalog page; target product is listed,"1. From search results or catalog, click a product card or product name.
+2. Observe the product details page.
+3. Verify product name, price, description, and availability/stock information.
+4. Verify Add to Cart control is present.","Product details page loads with correct name, price, description, and stock status; Add to Cart button is enabled for in-stock items.",Medium,Regression
+TC-CRT-001,Add to Cart,Add a single in-stock product to cart while logged in,User is logged in; selected product is in stock,"1. Search for and open an in-stock product details page.
+2. Click Add to Cart.
+3. Open the cart from the cart icon or cart page.
+4. Verify line item details.","Success notification is shown; cart icon reflects updated item count; cart lists the product with correct name, unit price, quantity (default 1), and line total.",High,Smoke
+TC-CHK-001,Checkout,Complete checkout using Cash on Delivery payment,User is logged in; cart contains at least one product; delivery address can be entered or is saved,"1. Open cart and click Proceed to Checkout.
+2. Enter or confirm valid billing and shipping address details.
+3. Proceed to payment step.
+4. Select Cash on Delivery as payment method.
+5. Review order summary and confirm the order.","Order is placed successfully; order confirmation message is displayed; cart is cleared or updated; COD payment method is recorded on confirmation.",High,Smoke
+TC-INV-001,Invoice Verification,Verify invoice details after successful COD order,User completed a Cash on Delivery checkout in current session or has a recent order,"1. After order confirmation, locate and open the invoice or order details.
+2. Verify invoice number is displayed and unique.
+3. Verify billing/shipping address, product line items, quantities, unit prices, subtotal, and total.
+4. Verify payment method shows Cash on Delivery.","Invoice displays a valid invoice number; product, quantity, pricing, and total match the order; payment method is Cash on Delivery; customer and address details are correct.",High,Regression
+TC-NEG-001,Invalid Login / Cart Update,Reject invalid login and prevent invalid cart quantity update,User is logged out for login test; for cart test a valid user has an item in cart,"Part A – Invalid Login:
+1. Navigate to Sign In.
+2. Enter a valid email with an incorrect password.
+3. Click Login.
+Part B – Cart Update (Edge):
+4. Log in with valid credentials.
+5. Add a product to cart and open cart.
+6. Attempt to set quantity to 0 or a negative value (if editable) or exceed available stock.
+7. Attempt to save or proceed.","Part A: Login is rejected; appropriate error message is shown; user remains unauthenticated. Part B: Invalid quantity is blocked or corrected; cart total is not calculated with invalid quantity; user cannot proceed to checkout with invalid cart state.",High,Regression
