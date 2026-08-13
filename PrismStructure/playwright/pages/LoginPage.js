@@ -7,7 +7,6 @@ class LoginPage extends BasePage {
     this.passwordInput = page.getByTestId('password');
     this.submitButton = page.getByTestId('login-submit');
     this.loginError = page.getByTestId('login-error');
-    this.registerLink = page.getByTestId('register-link');
   }
 
   async open() {
@@ -18,7 +17,10 @@ class LoginPage extends BasePage {
   async login(email, password) {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
-    await this.submitButton.click();
+    await Promise.all([
+      this.page.waitForURL(/\/account/, { timeout: 30_000 }),
+      this.submitButton.click(),
+    ]);
   }
 }
 

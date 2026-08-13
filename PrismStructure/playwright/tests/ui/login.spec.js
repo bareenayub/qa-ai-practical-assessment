@@ -1,23 +1,17 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../../pages/LoginPage');
 const { HomePage } = require('../../pages/HomePage');
-const { DEFAULT_CUSTOMER } = require('../../fixtures/testData');
+const { registerAndLogin } = require('../../helpers/uiFlows');
 
-/**
- * Manual traceability: TC-LOG-001
- * Module: Login | Type: Smoke
- */
+/** Manual traceability: TC-LOG-001 | Smoke */
 test.describe('Login @smoke', () => {
   test('TC-UI-LOG-001: Successful login with valid registered credentials', async ({ page }) => {
-    const loginPage = new LoginPage(page);
     const homePage = new HomePage(page);
-
-    await loginPage.open();
-    await loginPage.login(DEFAULT_CUSTOMER.email, DEFAULT_CUSTOMER.password);
+    const user = await registerAndLogin(page);
 
     await expect(page).toHaveURL(/\/account/);
     await homePage.open();
     await expect(homePage.userMenu).toBeVisible();
+    expect(user.email).toContain('@');
   });
 });
