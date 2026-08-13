@@ -1,0 +1,1090 @@
+{
+  "config": {
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "D:\\qa-ai-practical-assessment\\PrismStructure\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright.config.js",
+    "rootDir": "D:/qa-ai-practical-assessment/PrismStructure/playwright/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/qa-ai-practical-assessment/PrismStructure/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/qa-ai-practical-assessment/PrismStructure/playwright/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "D:\\qa-ai-practical-assessment\\PrismStructure\\reports\\playwright\\html",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "D:\\qa-ai-practical-assessment\\PrismStructure\\reports\\playwright\\results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.62.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "api\\auth.spec.js",
+      "file": "api/auth.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Authentication @smoke",
+          "file": "api/auth.spec.js",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-LOG-001: Login and obtain bearer token",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 926,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:10.323Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "427269f70a03218eb4b5-c84ed5b7f954e66688a2",
+              "file": "api/auth.spec.js",
+              "line": 22,
+              "column": 3
+            },
+            {
+              "title": "TC-API-CRT-001: Create a new cart with bearer token",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2020,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:11.294Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "427269f70a03218eb4b5-f4f969c359f643329607",
+              "file": "api/auth.spec.js",
+              "line": 32,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\cart.spec.js",
+      "file": "api/cart.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Cart @smoke",
+          "file": "api/cart.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-CAR-001: Add product to cart and verify contents",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1133,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:13.338Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8b46cfdb3e675e3e1bb-1ec26699ffb2ea3a766c",
+              "file": "api/cart.spec.js",
+              "line": 34,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\invoice.spec.js",
+      "file": "api/invoice.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Invoice @regression",
+          "file": "api/invoice.spec.js",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-INV-001: Generate invoice with COD payment details",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2334,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:17.027Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "506d0ed00540a278c2cb-63e02d5dacf06836f831",
+              "file": "api/invoice.spec.js",
+              "line": 36,
+              "column": 3
+            },
+            {
+              "title": "TC-API-INV-002: List and retrieve invoice by ID",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2890,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:20.552Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "506d0ed00540a278c2cb-099cfeffd051b1d01a44",
+              "file": "api/invoice.spec.js",
+              "line": 52,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\negative.spec.js",
+      "file": "api/negative.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Negative Scenarios @regression",
+          "file": "api/negative.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-NEG-001: Reject invalid login credentials",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 623,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:23.461Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2ed5abac98cf8bc71272-74bd8e5291fd4e269b1c",
+              "file": "api/negative.spec.js",
+              "line": 21,
+              "column": 3
+            },
+            {
+              "title": "TC-API-NEG-002: Reject invoice creation without authentication",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1090,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:24.099Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2ed5abac98cf8bc71272-6099b8f09a091661f8b1",
+              "file": "api/negative.spec.js",
+              "line": 28,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\products.spec.js",
+      "file": "api/products.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Products @regression",
+          "file": "api/products.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-PRD-001: Retrieve product catalog",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 623,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:25.209Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f1553ef5d21af5dfea45-b53318d763200b35da5b",
+              "file": "api/products.spec.js",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "TC-API-SRH-001: Search products by keyword",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 553,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:25.845Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f1553ef5d21af5dfea45-1b071644a4a5a8f6651d",
+              "file": "api/products.spec.js",
+              "line": 33,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\registration.spec.js",
+      "file": "api/registration.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API User Registration @smoke",
+          "file": "api/registration.spec.js",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-REG-001: Register a new user via API",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 728,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:26.423Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1f7bc537fe7cec5cb853-185ef1c55730f1336869",
+              "file": "api/registration.spec.js",
+              "line": 22,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui\\addToCart.spec.js",
+      "file": "ui/addToCart.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Add to Cart @smoke",
+          "file": "ui/addToCart.spec.js",
+          "line": 13,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-UI-CRT-001: Add a single in-stock product to cart while logged in",
+              "ok": false,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 22630,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('product-title')\nExpected substring: \u001b[32m\"C\u001b[7mombination Pliers\u001b[27m\"\u001b[39m\nReceived string:    \u001b[31m\"C\u001b[7mlaw Hammer with Shock Reduction Grip \u001b[27m\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-title')\u001b[22m\n\u001b[2m    18 × locator resolved to <span class=\"product-title\" data-test=\"product-title\" _ngcontent-ng-c2879330868=\"\">…</span>\u001b[22m\n\u001b[2m       - unexpected value \"Claw Hammer with Shock Reduction Grip \"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('product-title')\nExpected substring: \u001b[32m\"C\u001b[7mombination Pliers\u001b[27m\"\u001b[39m\nReceived string:    \u001b[31m\"C\u001b[7mlaw Hammer with Shock Reduction Grip \u001b[27m\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-title')\u001b[22m\n\u001b[2m    18 × locator resolved to <span class=\"product-title\" data-test=\"product-title\" _ngcontent-ng-c2879330868=\"\">…</span>\u001b[22m\n\u001b[2m       - unexpected value \"Claw Hammer with Shock Reduction Grip \"\u001b[22m\n\n    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\addToCart.spec.js:30:45",
+                        "location": {
+                          "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\addToCart.spec.js",
+                          "column": 45,
+                          "line": 30
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     \u001b[36mawait\u001b[39m homePage\u001b[33m.\u001b[39mnavCart\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m     \u001b[36mawait\u001b[39m expect(checkoutPage\u001b[33m.\u001b[39mproductTitle)\u001b[33m.\u001b[39mtoContainText(productName\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mtrim() \u001b[33m?\u001b[39m\u001b[33m?\u001b[39m \u001b[32m''\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m expect(checkoutPage\u001b[33m.\u001b[39mproductQuantity)\u001b[33m.\u001b[39mtoHaveValue(\u001b[32m'1'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m     \u001b[36mawait\u001b[39m expect(checkoutPage\u001b[33m.\u001b[39mcartTotal)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\addToCart.spec.js",
+                            "column": 45,
+                            "line": 30
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('product-title')\nExpected substring: \u001b[32m\"C\u001b[7mombination Pliers\u001b[27m\"\u001b[39m\nReceived string:    \u001b[31m\"C\u001b[7mlaw Hammer with Shock Reduction Grip \u001b[27m\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-title')\u001b[22m\n\u001b[2m    18 × locator resolved to <span class=\"product-title\" data-test=\"product-title\" _ngcontent-ng-c2879330868=\"\">…</span>\u001b[22m\n\u001b[2m       - unexpected value \"Claw Hammer with Shock Reduction Grip \"\u001b[22m\n\n\n\u001b[0m \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m     \u001b[36mawait\u001b[39m homePage\u001b[33m.\u001b[39mnavCart\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m     \u001b[36mawait\u001b[39m expect(checkoutPage\u001b[33m.\u001b[39mproductTitle)\u001b[33m.\u001b[39mtoContainText(productName\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mtrim() \u001b[33m?\u001b[39m\u001b[33m?\u001b[39m \u001b[32m''\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m expect(checkoutPage\u001b[33m.\u001b[39mproductQuantity)\u001b[33m.\u001b[39mtoHaveValue(\u001b[32m'1'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m     \u001b[36mawait\u001b[39m expect(checkoutPage\u001b[33m.\u001b[39mcartTotal)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\addToCart.spec.js:30:45\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:27.195Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-addToCart-Add-to-Cart-s-3d0b2-uct-to-cart-while-logged-in-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-addToCart-Add-to-Cart-s-3d0b2-uct-to-cart-while-logged-in-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-addToCart-Add-to-Cart-s-3d0b2-uct-to-cart-while-logged-in-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\addToCart.spec.js",
+                        "column": 45,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "dbd2be33842bc8c5ba8c-3ff4e373a103d4540483",
+              "file": "ui/addToCart.spec.js",
+              "line": 14,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui\\checkout.spec.js",
+      "file": "ui/checkout.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Checkout @smoke",
+          "file": "ui/checkout.spec.js",
+          "line": 13,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-UI-CHK-001: Complete checkout using Cash on Delivery payment",
+              "ok": false,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 30462,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('proceed-3') to be visible\u001b[22m\n\u001b[2m    43 × locator resolved to hidden <button disabled type=\"button\" awnextstep=\"\" data-test=\"proceed-3\" class=\"btn btn-success\">Proceed to checkout </button>\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('proceed-3') to be visible\u001b[22m\n\u001b[2m    43 × locator resolved to hidden <button disabled type=\"button\" awnextstep=\"\" data-test=\"proceed-3\" class=\"btn btn-success\">Proceed to checkout </button>\u001b[22m\n\n    at CheckoutPage.clickWizardNext (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js:34:18)\n    at CheckoutPage.proceedThroughWizard (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js:71:16)\n    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\checkout.spec.js:30:5",
+                        "location": {
+                          "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js",
+                          "column": 18,
+                          "line": 34
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\pages\\CheckoutPage.js:34\n\n\u001b[0m \u001b[90m 32 |\u001b[39m   \u001b[36masync\u001b[39m clickWizardNext(stepNumber) {\n \u001b[90m 33 |\u001b[39m     \u001b[36mconst\u001b[39m button \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`proceed-${stepNumber}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m20\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js",
+                            "column": 18,
+                            "line": 34
+                          },
+                          "message": "TimeoutError: locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('proceed-3') to be visible\u001b[22m\n\u001b[2m    43 × locator resolved to hidden <button disabled type=\"button\" awnextstep=\"\" data-test=\"proceed-3\" class=\"btn btn-success\">Proceed to checkout </button>\u001b[22m\n\n\n\u001b[90m   at \u001b[39m..\\pages\\CheckoutPage.js:34\n\n\u001b[0m \u001b[90m 32 |\u001b[39m   \u001b[36masync\u001b[39m clickWizardNext(stepNumber) {\n \u001b[90m 33 |\u001b[39m     \u001b[36mconst\u001b[39m button \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`proceed-${stepNumber}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m20\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m\u001b[0m\n\u001b[2m    at CheckoutPage.clickWizardNext (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js:34:18)\u001b[22m\n\u001b[2m    at CheckoutPage.proceedThroughWizard (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js:71:16)\u001b[22m\n\u001b[2m    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\checkout.spec.js:30:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:24:54.445Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-checkout-Checkout-smoke-0090a-ng-Cash-on-Delivery-payment-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-checkout-Checkout-smoke-0090a-ng-Cash-on-Delivery-payment-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-checkout-Checkout-smoke-0090a-ng-Cash-on-Delivery-payment-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js",
+                        "column": 18,
+                        "line": 34
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "14b42a966831425e1cec-148ddac0a1463b374c44",
+              "file": "ui/checkout.spec.js",
+              "line": 14,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui\\invoice.spec.js",
+      "file": "ui/invoice.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Invoice Verification @regression",
+          "file": "ui/invoice.spec.js",
+          "line": 14,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-UI-INV-001: Verify invoice details after successful COD order",
+              "ok": false,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 30251,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('proceed-3') to be visible\u001b[22m\n\u001b[2m    43 × locator resolved to hidden <button disabled type=\"button\" awnextstep=\"\" data-test=\"proceed-3\" class=\"btn btn-success\">Proceed to checkout </button>\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('proceed-3') to be visible\u001b[22m\n\u001b[2m    43 × locator resolved to hidden <button disabled type=\"button\" awnextstep=\"\" data-test=\"proceed-3\" class=\"btn btn-success\">Proceed to checkout </button>\u001b[22m\n\n    at CheckoutPage.clickWizardNext (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js:34:18)\n    at CheckoutPage.proceedThroughWizard (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js:71:16)\n    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js:32:5",
+                        "location": {
+                          "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js",
+                          "column": 18,
+                          "line": 34
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\pages\\CheckoutPage.js:34\n\n\u001b[0m \u001b[90m 32 |\u001b[39m   \u001b[36masync\u001b[39m clickWizardNext(stepNumber) {\n \u001b[90m 33 |\u001b[39m     \u001b[36mconst\u001b[39m button \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`proceed-${stepNumber}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m20\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js",
+                            "column": 18,
+                            "line": 34
+                          },
+                          "message": "TimeoutError: locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('proceed-3') to be visible\u001b[22m\n\u001b[2m    43 × locator resolved to hidden <button disabled type=\"button\" awnextstep=\"\" data-test=\"proceed-3\" class=\"btn btn-success\">Proceed to checkout </button>\u001b[22m\n\n\n\u001b[90m   at \u001b[39m..\\pages\\CheckoutPage.js:34\n\n\u001b[0m \u001b[90m 32 |\u001b[39m   \u001b[36masync\u001b[39m clickWizardNext(stepNumber) {\n \u001b[90m 33 |\u001b[39m     \u001b[36mconst\u001b[39m button \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`proceed-${stepNumber}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m20\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m\u001b[0m\n\u001b[2m    at CheckoutPage.clickWizardNext (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js:34:18)\u001b[22m\n\u001b[2m    at CheckoutPage.proceedThroughWizard (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js:71:16)\u001b[22m\n\u001b[2m    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js:32:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:25:25.385Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-invoice-Invoice-Verific-8e610--after-successful-COD-order-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-invoice-Invoice-Verific-8e610--after-successful-COD-order-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-invoice-Invoice-Verific-8e610--after-successful-COD-order-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\CheckoutPage.js",
+                        "column": 18,
+                        "line": 34
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "63db7c426f66f39f8c53-9b5c7d43a143dda4e79b",
+              "file": "ui/invoice.spec.js",
+              "line": 15,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui\\login.spec.js",
+      "file": "ui/login.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Login @smoke",
+          "file": "ui/login.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-UI-LOG-001: Successful login with valid registered credentials",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6713,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:25:56.133Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5112dfcf3bb7f6303d71-e679fbdb00dc96aaf642",
+              "file": "ui/login.spec.js",
+              "line": 12,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui\\negative.spec.js",
+      "file": "ui/negative.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Negative Scenarios @regression",
+          "file": "ui/negative.spec.js",
+          "line": 13,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-UI-NEG-001: Reject invalid login and prevent invalid cart quantity update",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11465,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:26:02.974Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9cd481e0fd3d6270dcc-04371693995e70c6d43e",
+              "file": "ui/negative.spec.js",
+              "line": 14,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui\\productDetails.spec.js",
+      "file": "ui/productDetails.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Product Details @regression",
+          "file": "ui/productDetails.spec.js",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-UI-PRD-001: View complete product details from search results",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5150,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:26:14.487Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d78f0cb8b5c8a53caf62-36a7b22ee8375289191d",
+              "file": "ui/productDetails.spec.js",
+              "line": 11,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui\\registration.spec.js",
+      "file": "ui/registration.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "User Registration @smoke",
+          "file": "ui/registration.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-UI-REG-001: Successful new user registration with valid data",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6516,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:26:19.668Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0928cb4591fb8c9328a1-c1d60356f99be1c1a4bf",
+              "file": "ui/registration.spec.js",
+              "line": 12,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui\\search.spec.js",
+      "file": "ui/search.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Product Search @regression",
+          "file": "ui/search.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-UI-SRH-001: Search returns matching products for a valid keyword",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4128,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T09:26:26.208Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "de61eaf08190f4484140-a12a7b28da06a4655a0d",
+              "file": "ui/search.spec.js",
+              "line": 10,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-13T09:24:09.979Z",
+    "duration": 140472.16999999998,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

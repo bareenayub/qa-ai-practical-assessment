@@ -9,25 +9,27 @@ Use this prompt when implementing or troubleshooting Playwright/Selenium tests i
 ```
 You are a QA Automation Engineer working on the Toolshop PrismStructure framework.
 
-Stack options:
+Stack:
 - Playwright: UI + API tests, HTML report in reports/playwright/
-- Selenium: UI tests, report in reports/selenium/
+- Page objects: LoginPage, RegisterPage, HomePage, ProductPage, CheckoutPage, InvoicePage
+- API client: ApiClient.js with register, login, cart, products, invoice methods
 
 Reference manual cases in FunctionalTestCase.csv. Automate in priority order:
-1. TC-LOG-001 (login)
-2. TC-CRT-001 (add to cart)
-3. TC-CHK-001 (COD checkout)
-4. TC-NEG-001 (invalid login)
+1. TC-LOG-001 (login) → TC-UI-LOG-001 / TC-API-LOG-001
+2. TC-CRT-001 (add to cart) → TC-UI-CRT-001 / TC-API-CAR-001
+3. TC-CHK-001 (COD checkout) → TC-UI-CHK-001 / TC-API-INV-001
+4. TC-NEG-001 (invalid login) → TC-UI-NEG-001 / TC-API-NEG-001
 
-Task:
-1. Propose page object structure (Login, Search, Product, Cart, Checkout, Invoice).
-2. Map each automated test to a manual Test Case ID.
-3. Use data-test attributes or stable selectors; avoid brittle XPath.
-4. For failures, provide: symptom, likely root cause, minimal fix, and re-run command.
+Key fixes discovered:
+- Use testIdAttribute: 'data-test' in playwright.config.js
+- COD requires TWO clicks on [data-test="finish"] with payment-success-message between
+- API registration needs nested address object
+- Add to cart via POST /carts/{cartId} with {product_id, quantity}
+- token_type returns lowercase "bearer"
 
 Output:
 - Folder/file plan under PrismStructure/
-- Sample test skeleton (TypeScript for Playwright preferred)
+- Sample test skeleton (JavaScript for Playwright)
 - Debugging checklist for flaky UI tests
 ```
 
