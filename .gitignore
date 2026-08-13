@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Playwright artifacts
+test-results/
+PrismStructure/test-results/
+playwright-report/
+blob-report/
+
+# Environment / secrets
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
