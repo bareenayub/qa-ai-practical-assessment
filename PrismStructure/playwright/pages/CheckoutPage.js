@@ -45,9 +45,25 @@ class CheckoutPage extends BasePage {
     await this.loginSubmit.click();
   }
 
+  async setStateValue(stateValue) {
+    const tagName = await this.state.evaluate((el) => el.tagName.toLowerCase());
+    if (tagName === 'select') {
+      const matched = await this.state
+        .selectOption({ label: stateValue })
+        .then(() => true)
+        .catch(() => false);
+      if (!matched) {
+        await this.state.selectOption({ label: /new york/i });
+      }
+      return;
+    }
+
+    await this.state.fill(stateValue);
+  }
+
   async fillAddress(address) {
     await this.country.selectOption(address.country);
-    await this.postalCode.fill(address.postal_code);
+    await this.state.waitFor({ state: 'visible' });
 
     if (await this.houseNumber.isVisible()) {
       await this.houseNumber.fill(address.house_number);
@@ -55,60 +71,101 @@ class CheckoutPage extends BasePage {
 
     await this.street.fill(address.street);
     await this.city.fill(address.city);
-    await this.state.fill(address.state);
+    await this.setStateValue(address.state);
+    await this.postalCode.fill(address.postal_code);
+    await this.postalCode.press('Tab');
+  }
+
+  async advanceFromSignInStep(email, password) {
+    if (await this.emailInput.isVisible({ timeout: 3_000 }).catch(() => false)) {
+      await this.loginInCheckout(email, password);
+    }
+
+    if (await this.proceedStep2.isEnabled({ timeout: 5_000 }).catch(() => false)) {
+      await this.proceedStep2.click();
+      return;
+    }
+
+    if (await this.alreadyLoggedInProceed.isEnabled({ timeout: 5_000 }).catch(() => false)) {
+      await this.alreadyLoggedInProceed.click();
+    }
   }
 
   async proceedThroughWizard({ email, password, address }) {
     await this.clickProceed(1);
+    await this.advanceFromSignInStep(email, password);
 
-    if (await this.emailInput.isVisible()) {
-      await this.loginInCheckout(email, password);
+    if (await this.paymentMethod.isVisible({ timeout: 5_000 }).catch(() => false)) {
+      return;
     }
 
-    if (await this.alreadyLoggedInProceed.isVisible()) {
-      await this.alreadyLoggedInProceed.click();
-    } else if (await this.proceedStep2.isVisible()) {
-      await expect(this.proceedStep2).toBeEnabled();
-      await this.proceedStep2.click();
-    }
+    await expect(this.country).toBeVisible({ timeout: 10_000 });
 
-    if (await this.country.isVisible()) {
+    for (let attempt = 0; attempt < 3; attempt += 1) {
       await this.fillAddress(address);
+      if (await this.proceedStep3.isEnabled({ timeout: 3_000 }).catch(() => false)) {
+        break;
+      }
     }
 
-    await this.clickProceed(3);
+    await expect(this.proceedStep3).toBeEnabled({ timeout: 20_000 });
+    await this.proceedStep3.click();
+  }
+
+  addressFromCustomer(customer) {
+    return {
+      country: customer.country,
+      postal_code: customer.postal_code,
+      house_number: customer.house_number,
+      street: customer.street,
+      city: customer.city,
+      state: customer.state,
+    };
   }
 
   /** COD: 1st Confirm validates payment, 2nd Confirm creates the invoice. */
   async completeCashOnDelivery() {
     await this.paymentMethod.selectOption('cash-on-delivery');
+    await expect(this.paymentMethod).toHaveValue('cash-on-delivery');
 
     await this.confirmButton().click();
-    await expect(this.page.getByText(/payment was successful/i)).toBeVisible({ timeout: 20_000 });
+    await expect(this.page.getByText(/payment was successful/i)).toBeVisible({ timeout: 15_000 });
 
-    const confirmButton = this.confirmButton();
-    await expect(confirmButton).toBeEnabled({ timeout: 15_000 });
+    for (let attempt = 0; attempt < 2 && !this.lastInvoiceNumber; attempt += 1) {
+      const confirmButton = this.confirmButton();
+      await expect(confirmButton).toBeEnabled({ timeout: 10_000 });
 
-    const invoiceRequest = this.page
-      .waitForResponse(
-        (response) =>
-          response.url().includes('api.practicesoftwaretesting.com/invoices') &&
-          response.request().method() === 'POST' &&
-          [200, 201].includes(response.status()),
-        { timeout: 30_000 },
-      )
-      .catch(() => null);
+      const invoiceRequest = this.page
+        .waitForResponse(
+          (response) =>
+            /\/invoices/.test(response.url()) &&
+            response.request().method() === 'POST' &&
+            [200, 201].includes(response.status()),
+          { timeout: 20_000 },
+        )
+        .catch(() => null);
 
-    await confirmButton.click();
+      await confirmButton.click();
 
-    const response = await invoiceRequest;
-    if (response) {
-      const body = await response.json();
-      this.lastInvoiceNumber = body.invoice_number || body.invoiceNumber || body.id;
+      const response = await invoiceRequest;
+      if (response) {
+        const body = await response.json();
+        this.lastInvoiceNumber = body.invoice_number || body.invoiceNumber;
+      }
+
+      if (!this.lastInvoiceNumber) {
+        const invoiceOnPage = this.page.locator('#invoice-number, [data-test="invoice-number"]').first();
+        if (await invoiceOnPage.isVisible({ timeout: 5_000 }).catch(() => false)) {
+          const tagName = await invoiceOnPage.evaluate((el) => el.tagName.toLowerCase());
+          this.lastInvoiceNumber =
+            tagName === 'input'
+              ? (await invoiceOnPage.inputValue()).trim()
+              : (await invoiceOnPage.textContent())?.trim() ?? '';
+        }
+      }
     }
 
-    const invoiceOnPage = this.page.locator('#invoice-number, [data-test="invoice-number"]').first();
-    await invoiceOnPage.waitFor({ state: 'visible', timeout: 15_000 }).catch(() => {});
+    expect(this.lastInvoiceNumber, 'Invoice number should be created after COD checkout').toBeTruthy();
   }
 
   async getInvoiceNumber() {
@@ -117,20 +174,21 @@ class CheckoutPage extends BasePage {
     }
 
     const onPage = this.page.locator('#invoice-number, [data-test="invoice-number"]').first();
-    if (await onPage.isVisible().catch(() => false)) {
+    if (await onPage.isVisible({ timeout: 5_000 }).catch(() => false)) {
       const tagName = await onPage.evaluate((el) => el.tagName.toLowerCase());
-      if (tagName === 'input') {
-        return (await onPage.inputValue()).trim();
-      }
-      return (await onPage.textContent())?.trim() ?? '';
+      this.lastInvoiceNumber =
+        tagName === 'input'
+          ? (await onPage.inputValue()).trim()
+          : (await onPage.textContent())?.trim() ?? '';
+      return this.lastInvoiceNumber;
     }
 
     const invoicePage = new InvoicePage(this.page);
     await invoicePage.openList();
+    await invoicePage.waitForInvoiceRow(8_000);
     await invoicePage.openLatestInvoice();
-    const invoiceNumber = (await invoicePage.invoiceNumber.inputValue()).trim();
-    this.lastInvoiceNumber = invoiceNumber;
-    return invoiceNumber;
+    this.lastInvoiceNumber = (await invoicePage.invoiceNumber.inputValue()).trim();
+    return this.lastInvoiceNumber;
   }
 }
 

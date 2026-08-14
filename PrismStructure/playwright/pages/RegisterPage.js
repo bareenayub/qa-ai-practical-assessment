@@ -1,4 +1,5 @@
 const { BasePage } = require('./BasePage');
+const { demoPause } = require('../helpers/demoPause');
 
 class RegisterPage extends BasePage {
   constructor(page) {
@@ -20,8 +21,31 @@ class RegisterPage extends BasePage {
   }
 
   async open() {
-    await this.goto('/auth/register');
-    await this.form.waitFor({ state: 'visible' });
+    try {
+      await this.goto('/auth/register');
+    } catch (error) {
+      if (!String(error.message).includes('interrupted')) {
+        throw error;
+      }
+    }
+
+    await this.form.waitFor({ state: 'visible', timeout: 30_000 });
+  }
+
+  async setStateValue(stateValue) {
+    const tagName = await this.state.evaluate((el) => el.tagName.toLowerCase());
+    if (tagName === 'select') {
+      const matched = await this.state
+        .selectOption({ label: stateValue })
+        .then(() => true)
+        .catch(() => false);
+      if (!matched) {
+        await this.state.selectOption({ label: /new york/i });
+      }
+      return;
+    }
+
+    await this.state.fill(stateValue);
   }
 
   async register(user) {
@@ -33,11 +57,16 @@ class RegisterPage extends BasePage {
     await this.houseNumber.fill(user.house_number);
     await this.street.fill(user.street);
     await this.city.fill(user.city);
-    await this.state.fill(user.state);
+    await this.setStateValue(user.state);
     await this.phone.fill(user.phone);
     await this.email.fill(user.email);
     await this.password.fill(user.password);
-    await this.submitButton.click();
+    await demoPause(this.page, 1200);
+
+    await Promise.all([
+      this.page.waitForURL(/\/auth\/login/, { timeout: 30_000 }),
+      this.submitButton.click(),
+    ]);
   }
 }
 

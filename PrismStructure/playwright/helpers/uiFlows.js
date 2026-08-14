@@ -7,7 +7,7 @@ const { RegisterPage } = require('../pages/RegisterPage');
 const { HomePage } = require('../pages/HomePage');
 const { ProductPage } = require('../pages/ProductPage');
 const { CheckoutPage } = require('../pages/CheckoutPage');
-const { DEFAULT_CUSTOMER, buildUiRegistrationUser } = require('../fixtures/testData');
+const { DEFAULT_CUSTOMER, buildUiRegistrationUser, IN_STOCK_SEARCH_KEYWORDS } = require('../fixtures/testData');
 
 const FALLBACK_CUSTOMER = {
   email: 'customer2@practicesoftwaretesting.com',
@@ -36,12 +36,17 @@ async function loginAsCustomer(page) {
 
   for (const customer of candidates) {
     await loginPage.open();
+
+    if (page.url().includes('/account') && !page.url().includes('/auth/')) {
+      return customer;
+    }
+
     await loginPage.emailInput.fill(customer.email);
     await loginPage.passwordInput.fill(customer.password);
     await loginPage.submitButton.click();
 
     const reachedAccount = await page
-      .waitForURL(/\/account/, { timeout: 5_000 })
+      .waitForURL(/\/account/, { timeout: 2_000 })
       .then(() => true)
       .catch(() => false);
 
@@ -53,16 +58,41 @@ async function loginAsCustomer(page) {
   return registerAndLogin(page);
 }
 
-async function addFirstSearchResultToCart(page, keyword = 'Hammer') {
+/** Find and open a product that is currently in stock on the live catalog. */
+async function openInStockProductFromSearch(page, keywords = IN_STOCK_SEARCH_KEYWORDS) {
   const homePage = new HomePage(page);
   const productPage = new ProductPage(page);
+  const searchTerms = [...new Set(keywords)];
 
-  await homePage.open();
-  await homePage.search(keyword);
-  await homePage.openFirstProduct();
-  await productPage.waitForLoaded();
+  for (const keyword of searchTerms) {
+    await homePage.open();
+    await homePage.search(keyword);
 
-  const productName = (await productPage.productName.textContent())?.trim() ?? '';
+    const cardCount = await homePage.productCards.count();
+    for (let index = 0; index < Math.min(cardCount, 4); index += 1) {
+      await homePage.productCards.nth(index).click();
+      await productPage.waitForLoaded();
+
+      const canAdd = await productPage.addToCart.isEnabled({ timeout: 3_000 }).catch(() => false);
+      if (canAdd) {
+        const productName = (await productPage.productName.textContent())?.trim() ?? '';
+        return { homePage, productPage, productName };
+      }
+
+      await page.goBack();
+      await homePage.productCards.first().waitFor({ state: 'visible' });
+    }
+  }
+
+  throw new Error(`No in-stock product found for keywords: ${searchTerms.join(', ')}`);
+}
+
+async function addFirstSearchResultToCart(page, keyword) {
+  const searchTerms = keyword
+    ? [...new Set([keyword, ...IN_STOCK_SEARCH_KEYWORDS])]
+    : IN_STOCK_SEARCH_KEYWORDS;
+  const { productPage, productName } = await openInStockProductFromSearch(page, searchTerms);
+
   await productPage.addToCart.click();
 
   return productName;
@@ -81,6 +111,7 @@ async function openCart(page) {
 module.exports = {
   registerAndLogin,
   loginAsCustomer,
+  openInStockProductFromSearch,
   addFirstSearchResultToCart,
   openCart,
 };

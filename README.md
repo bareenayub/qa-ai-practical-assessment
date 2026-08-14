@@ -41,7 +41,13 @@ npx playwright install chromium
 ### Run Tests
 
 ```bash
-# All tests (UI + API)
+# One command: all API + UI tests (reports auto-generated)
+npm run test:all
+
+# Same as above, then open HTML report in browser
+npm run test:all:report
+
+# All tests (alias)
 npm test
 
 # Smoke tests only
@@ -50,8 +56,11 @@ npm run test:smoke
 # Regression tests only
 npm run test:regression
 
-# UI only
+# UI only (headless Chromium)
 npm run test:ui
+
+# UI in visible Chromium window (search/registration pause briefly so you can read the form)
+npm run test:ui:headed
 
 # API only
 npm run test:api
@@ -101,6 +110,24 @@ Reports are also saved to `PrismStructure/reports/playwright/html/` and `results
 | TC-UI-INV-001 | TC-INV-001 | @regression |
 | TC-UI-NEG-001 | TC-NEG-001 | @regression |
 
+### Search vs Product Details (different tests)
+
+| Test | What it validates |
+| --- | --- |
+| **TC-UI-SRH-001** | Search **results list** — keyword returns matching product cards with name and price |
+| **TC-UI-PRD-001** | **Product detail page** — description, stock status, and enabled Add to Cart after opening a product |
+
+Both may use search as a setup step, but they map to separate manual cases (TC-SRH-001 vs TC-PRD-001).
+
+### Why some UI tests take longer
+
+| Test | Typical time | Reason |
+| --- | --- | --- |
+| TC-UI-INV-001 | ~35s | Full E2E: register → cart → COD checkout → invoice verify |
+| TC-UI-CHK-001 | ~32s | Full checkout wizard + double COD confirm |
+| TC-UI-NEG-001 | ~12–16s | Two invalid login checks + registration + cart |
+| TC-UI-SRH-001 / PRD-001 | ~5–6s | Single-page or short navigation flows |
+
 ### API Automation (10 tests)
 
 | Test ID | Manual Trace | Tag |
@@ -128,6 +155,8 @@ Registration tests generate unique emails via `playwright/fixtures/testData.js`.
 ## AI-Assisted Workflow
 
 Prompt templates in `ai-prompts/` support requirements analysis, test design, automation debugging, and documentation.
+
+**Start here (plain language):** [`ai-prompts/how-to-use-ai-and-maintain-tests.md`](../ai-prompts/how-to-use-ai-and-maintain-tests.md)
 
 ## Assignment Checklist
 

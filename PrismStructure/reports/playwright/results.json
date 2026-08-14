@@ -3,8 +3,7 @@
     "argv": [
       "C:\\nvm4w\\nodejs\\node.exe",
       "D:\\qa-ai-practical-assessment\\PrismStructure\\node_modules\\@playwright\\test\\cli.js",
-      "test",
-      "playwright/tests/ui"
+      "test"
     ],
     "configFile": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright.config.js",
     "rootDir": "D:/qa-ai-practical-assessment/PrismStructure/playwright/tests",
@@ -73,6 +72,468 @@
   },
   "suites": [
     {
+      "title": "api\\auth.spec.js",
+      "file": "api/auth.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Authentication @smoke",
+          "file": "api/auth.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-LOG-001: Login and obtain bearer token",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2375,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:58:58.990Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "427269f70a03218eb4b5-c84ed5b7f954e66688a2",
+              "file": "api/auth.spec.js",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "TC-API-CRT-001: Create a new cart with bearer token",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2245,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:59:01.412Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "427269f70a03218eb4b5-f4f969c359f643329607",
+              "file": "api/auth.spec.js",
+              "line": 35,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\cart.spec.js",
+      "file": "api/cart.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Cart @smoke",
+          "file": "api/cart.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-CAR-001: Add product to cart and verify contents",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1238,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:59:03.681Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8b46cfdb3e675e3e1bb-1ec26699ffb2ea3a766c",
+              "file": "api/cart.spec.js",
+              "line": 34,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\invoice.spec.js",
+      "file": "api/invoice.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Invoice @regression",
+          "file": "api/invoice.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-INV-001: Generate invoice with COD payment details",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2458,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:59:07.787Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "506d0ed00540a278c2cb-63e02d5dacf06836f831",
+              "file": "api/invoice.spec.js",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "TC-API-INV-002: List and retrieve invoice by ID",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3033,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:59:11.553Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "506d0ed00540a278c2cb-099cfeffd051b1d01a44",
+              "file": "api/invoice.spec.js",
+              "line": 53,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\negative.spec.js",
+      "file": "api/negative.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Negative Scenarios @regression",
+          "file": "api/negative.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-NEG-001: Reject invalid login credentials",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 638,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:59:14.604Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2ed5abac98cf8bc71272-74bd8e5291fd4e269b1c",
+              "file": "api/negative.spec.js",
+              "line": 21,
+              "column": 3
+            },
+            {
+              "title": "TC-API-NEG-002: Reject invoice creation without authentication",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1185,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:59:15.255Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2ed5abac98cf8bc71272-6099b8f09a091661f8b1",
+              "file": "api/negative.spec.js",
+              "line": 28,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\products.spec.js",
+      "file": "api/products.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Products @regression",
+          "file": "api/products.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-PRD-001: Retrieve product catalog",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 593,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:59:16.463Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f1553ef5d21af5dfea45-b53318d763200b35da5b",
+              "file": "api/products.spec.js",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "TC-API-SRH-001: Search products by keyword",
+              "ok": true,
+              "tags": [
+                "regression"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 622,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:59:17.069Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f1553ef5d21af5dfea45-1b071644a4a5a8f6651d",
+              "file": "api/products.spec.js",
+              "line": 33,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api\\registration.spec.js",
+      "file": "api/registration.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API User Registration @smoke",
+          "file": "api/registration.spec.js",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-API-REG-001: Register a new user via API",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 763,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:59:17.709Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1f7bc537fe7cec5cb853-185ef1c55730f1336869",
+              "file": "api/registration.spec.js",
+              "line": 22,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "ui\\addToCart.spec.js",
       "file": "ui/addToCart.spec.js",
       "column": 0,
@@ -103,12 +564,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 14557,
+                      "duration": 14996,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T05:11:50.365Z",
+                      "startTime": "2026-08-14T07:59:18.504Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -135,7 +596,7 @@
         {
           "title": "Checkout @smoke",
           "file": "ui/checkout.spec.js",
-          "line": 7,
+          "line": 6,
           "column": 6,
           "specs": [
             {
@@ -156,12 +617,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 61659,
+                      "duration": 14569,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T05:12:05.120Z",
+                      "startTime": "2026-08-14T07:59:33.595Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -171,7 +632,7 @@
               ],
               "id": "14b42a966831425e1cec-148ddac0a1463b374c44",
               "file": "ui/checkout.spec.js",
-              "line": 8,
+              "line": 7,
               "column": 3
             }
           ]
@@ -188,7 +649,7 @@
         {
           "title": "Invoice Verification @regression",
           "file": "ui/invoice.spec.js",
-          "line": 9,
+          "line": 10,
           "column": 6,
           "specs": [
             {
@@ -199,7 +660,7 @@
               ],
               "tests": [
                 {
-                  "timeout": 120000,
+                  "timeout": 90000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
@@ -209,31 +670,31 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 74884,
+                      "duration": 26790,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('payment-method')\nExpected pattern: \u001b[32m/Cash on Delivery/i\u001b[39m\nReceived string:  \u001b[31m\"Buy Now Pay Later\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('payment-method')\u001b[22m\n\u001b[2m    24 × locator resolved to <input readonly type=\"text\" id=\"payment_method\" data-test=\"payment-method\" _ngcontent-ng-c4124860905=\"\" class=\"form-control-plaintext\"/>\u001b[22m\n\u001b[2m       - unexpected value \"Buy Now Pay Later\"\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('payment-method')\nExpected pattern: \u001b[32m/Cash on Delivery/i\u001b[39m\nReceived string:  \u001b[31m\"Buy Now Pay Later\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('payment-method')\u001b[22m\n\u001b[2m    24 × locator resolved to <input readonly type=\"text\" id=\"payment_method\" data-test=\"payment-method\" _ngcontent-ng-c4124860905=\"\" class=\"form-control-plaintext\"/>\u001b[22m\n\u001b[2m       - unexpected value \"Buy Now Pay Later\"\u001b[22m\n\n    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js:35:45",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('invoice-number')\nExpected: \u001b[32m\"INV-2026000026\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('invoice-number')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('invoice-number')\nExpected: \u001b[32m\"INV-2026000026\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('invoice-number')\u001b[22m\n\n    at InvoicePage.openInvoiceByNumber (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js:35:38)\n    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js:38:5",
                         "location": {
-                          "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js",
-                          "column": 45,
+                          "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js",
+                          "column": 38,
                           "line": 35
                         },
-                        "snippet": "\u001b[0m \u001b[90m 33 |\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoicePage\u001b[33m.\u001b[39minvoiceNumber)\u001b[33m.\u001b[39mtoHaveValue(invoiceNo)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoicePage\u001b[33m.\u001b[39mpaymentMethod)\u001b[33m.\u001b[39mtoHaveValue(\u001b[35m/Cash on Delivery/i\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoicePage\u001b[33m.\u001b[39mtotal)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeEmpty()\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[90m   at \u001b[39m..\\pages\\InvoicePage.js:35\n\n\u001b[0m \u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoiceRow)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m invoiceRow\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Details'\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39minvoiceNumber)\u001b[33m.\u001b[39mtoHaveValue(invoiceNumber)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m }\n \u001b[90m 38 |\u001b[39m\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js",
-                            "column": 45,
+                            "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js",
+                            "column": 38,
                             "line": 35
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('payment-method')\nExpected pattern: \u001b[32m/Cash on Delivery/i\u001b[39m\nReceived string:  \u001b[31m\"Buy Now Pay Later\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('payment-method')\u001b[22m\n\u001b[2m    24 × locator resolved to <input readonly type=\"text\" id=\"payment_method\" data-test=\"payment-method\" _ngcontent-ng-c4124860905=\"\" class=\"form-control-plaintext\"/>\u001b[22m\n\u001b[2m       - unexpected value \"Buy Now Pay Later\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 33 |\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoicePage\u001b[33m.\u001b[39minvoiceNumber)\u001b[33m.\u001b[39mtoHaveValue(invoiceNo)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoicePage\u001b[33m.\u001b[39mpaymentMethod)\u001b[33m.\u001b[39mtoHaveValue(\u001b[35m/Cash on Delivery/i\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoicePage\u001b[33m.\u001b[39mtotal)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeEmpty()\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js:35:45\u001b[22m"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('invoice-number')\nExpected: \u001b[32m\"INV-2026000026\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('invoice-number')\u001b[22m\n\n\n\u001b[90m   at \u001b[39m..\\pages\\InvoicePage.js:35\n\n\u001b[0m \u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoiceRow)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m invoiceRow\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Details'\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39minvoiceNumber)\u001b[33m.\u001b[39mtoHaveValue(invoiceNumber)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m }\n \u001b[90m 38 |\u001b[39m\u001b[0m\n\u001b[2m    at InvoicePage.openInvoiceByNumber (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js:35:38)\u001b[22m\n\u001b[2m    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js:38:5\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T05:13:06.802Z",
+                      "startTime": "2026-08-14T07:59:48.175Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -253,8 +714,8 @@
                         }
                       ],
                       "errorLocation": {
-                        "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js",
-                        "column": 45,
+                        "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js",
+                        "column": 38,
                         "line": 35
                       }
                     }
@@ -264,7 +725,7 @@
               ],
               "id": "63db7c426f66f39f8c53-9b5c7d43a143dda4e79b",
               "file": "ui/invoice.spec.js",
-              "line": 10,
+              "line": 11,
               "column": 3
             }
           ]
@@ -302,12 +763,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 8510,
+                      "duration": 11361,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T05:14:22.415Z",
+                      "startTime": "2026-08-14T08:00:15.363Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -334,7 +795,7 @@
         {
           "title": "Negative Scenarios @regression",
           "file": "ui/negative.spec.js",
-          "line": 8,
+          "line": 12,
           "column": 6,
           "specs": [
             {
@@ -355,12 +816,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 13001,
+                      "duration": 15686,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T05:14:31.092Z",
+                      "startTime": "2026-08-14T08:00:26.826Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -370,7 +831,7 @@
               ],
               "id": "d9cd481e0fd3d6270dcc-04371693995e70c6d43e",
               "file": "ui/negative.spec.js",
-              "line": 9,
+              "line": 13,
               "column": 3
             }
           ]
@@ -387,7 +848,7 @@
         {
           "title": "Product Details @regression",
           "file": "ui/productDetails.spec.js",
-          "line": 10,
+          "line": 11,
           "column": 6,
           "specs": [
             {
@@ -408,12 +869,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5187,
+                      "duration": 4974,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T05:14:44.115Z",
+                      "startTime": "2026-08-14T08:00:42.527Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -423,7 +884,7 @@
               ],
               "id": "d78f0cb8b5c8a53caf62-36a7b22ee8375289191d",
               "file": "ui/productDetails.spec.js",
-              "line": 11,
+              "line": 12,
               "column": 3
             }
           ]
@@ -461,12 +922,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6941,
+                      "duration": 5280,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T05:14:49.322Z",
+                      "startTime": "2026-08-14T08:00:47.513Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -493,7 +954,7 @@
         {
           "title": "Product Search @regression",
           "file": "ui/search.spec.js",
-          "line": 6,
+          "line": 9,
           "column": 6,
           "specs": [
             {
@@ -514,12 +975,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3952,
+                      "duration": 4472,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T05:14:56.295Z",
+                      "startTime": "2026-08-14T08:00:52.806Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -529,7 +990,7 @@
               ],
               "id": "de61eaf08190f4484140-a12a7b28da06a4655a0d",
               "file": "ui/search.spec.js",
-              "line": 7,
+              "line": 10,
               "column": 3
             }
           ]
@@ -539,9 +1000,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-08-14T05:11:49.891Z",
-    "duration": 190472.78199999998,
-    "expected": 7,
+    "startTime": "2026-08-14T07:58:58.526Z",
+    "duration": 118818.937,
+    "expected": 17,
     "skipped": 0,
     "unexpected": 1,
     "flaky": 0

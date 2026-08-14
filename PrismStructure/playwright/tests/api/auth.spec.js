@@ -1,7 +1,8 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 const { ApiClient } = require('../../api/ApiClient');
-const { buildRegistrationUser, DEFAULT_CUSTOMER } = require('../../fixtures/testData');
+const { registerAndLoginApi } = require('../../helpers/apiAuth');
+const { buildRegistrationUser } = require('../../fixtures/testData');
 
 /**
  * Manual traceability: TC-LOG-001 (API variant)
@@ -20,13 +21,15 @@ test.describe('API Authentication @smoke', () => {
   });
 
   test('TC-API-LOG-001: Login and obtain bearer token', async () => {
-    const response = await api.login(DEFAULT_CUSTOMER.email, DEFAULT_CUSTOMER.password);
+    const user = await registerAndLoginApi(api);
 
+    expect(api.token).toBeTruthy();
+
+    const response = await api.login(user.email, user.password);
     expect(response.status()).toBe(200);
     const body = await response.json();
     expect(body.access_token).toBeTruthy();
     expect(body.token_type.toLowerCase()).toBe('bearer');
-    expect(api.token).toBeTruthy();
   });
 
   test('TC-API-CRT-001: Create a new cart with bearer token', async () => {

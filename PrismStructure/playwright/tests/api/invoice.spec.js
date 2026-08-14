@@ -1,7 +1,8 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 const { ApiClient } = require('../../api/ApiClient');
-const { DEFAULT_CUSTOMER } = require('../../fixtures/testData');
+const { buildRegistrationUser } = require('../../fixtures/testData');
+const { authenticateApi } = require('../../helpers/apiAuth');
 
 /**
  * Manual traceability: TC-CHK-001, TC-INV-001 (API variant)
@@ -14,7 +15,7 @@ test.describe('API Invoice @regression', () => {
 
   test.beforeAll(async () => {
     api = await ApiClient.create();
-    await api.login(DEFAULT_CUSTOMER.email, DEFAULT_CUSTOMER.password);
+    await authenticateApi(api);
 
     const productsResponse = await api.getProducts();
     productId = (await productsResponse.json()).data[0].id;

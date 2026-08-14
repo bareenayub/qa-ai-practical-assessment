@@ -1,25 +1,23 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
-const { DEFAULT_ADDRESS } = require('../../fixtures/testData');
-const { loginAsCustomer, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
+const { registerAndLogin, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
 
 /** Manual traceability: TC-CHK-001 | Smoke */
 test.describe('Checkout @smoke', () => {
   test('TC-UI-CHK-001: Complete checkout using Cash on Delivery payment', async ({ page }) => {
     test.setTimeout(120_000);
 
-    const customer = await loginAsCustomer(page);
-    await addFirstSearchResultToCart(page, 'Hammer');
+    const customer = await registerAndLogin(page);
+    await addFirstSearchResultToCart(page);
     const checkoutPage = await openCart(page);
 
     await checkoutPage.proceedThroughWizard({
       email: customer.email,
       password: customer.password,
-      address: DEFAULT_ADDRESS,
+      address: checkoutPage.addressFromCustomer(customer),
     });
     await checkoutPage.completeCashOnDelivery();
 
-    const invoiceNo = await checkoutPage.getInvoiceNumber();
-    expect(invoiceNo).toBeTruthy();
+    expect(checkoutPage.lastInvoiceNumber).toBeTruthy();
   });
 });

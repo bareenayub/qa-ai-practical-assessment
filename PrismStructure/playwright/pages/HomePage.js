@@ -1,4 +1,5 @@
 const { BasePage } = require('./BasePage');
+const { demoPause } = require('../helpers/demoPause');
 
 class HomePage extends BasePage {
   constructor(page) {
@@ -19,8 +20,10 @@ class HomePage extends BasePage {
 
   async search(keyword) {
     await this.searchInput.fill(keyword);
+    await demoPause(this.page, 1200);
     await this.searchSubmit.click();
     await this.productCards.first().waitFor({ state: 'visible' });
+    await demoPause(this.page, 800);
   }
 
   async openFirstProduct() {

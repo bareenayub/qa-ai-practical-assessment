@@ -17,7 +17,7 @@ test.describe('User Registration @smoke', () => {
     await registerPage.open();
     await registerPage.register(user);
 
-    await expect(page).toHaveURL(/\/auth\/login/);
+    await expect(page).toHaveURL(/\/auth\/login/, { timeout: 30_000 });
     await loginPage.login(user.email, user.password);
     await expect(page).toHaveURL(/\/account/);
   });

@@ -12,6 +12,7 @@ PrismStructure/
 │   ├── api/ApiClient.js          # REST API helper
 │   ├── fixtures/testData.js      # Shared test data
 │   ├── helpers/uiFlows.js        # Reusable login / cart flows
+│   ├── helpers/demoPause.js      # Short pause in headed mode for visibility
 │   ├── pages/                    # Page objects (UI)
 │   └── tests/
 │       ├── ui/                   # 8 UI tests (@smoke / @regression)
@@ -34,12 +35,15 @@ npx playwright install chromium
 
 | Command | Description |
 | --- | --- |
-| `npm test` | Run all UI + API tests |
-| `npm run test:ui` | UI tests only |
+| `npm run test:all` | **One command:** all API + UI tests; reports auto-saved |
+| `npm run test:all:report` | Run all tests, then open HTML report |
+| `npm test` | Same as `test:all` |
+| `npm run test:ui` | UI tests only (headless Chromium) |
+| `npm run test:ui:headed` | UI tests in visible Chromium (search/register pause briefly) |
 | `npm run test:api` | API tests only |
 | `npm run test:smoke` | Tests tagged `@smoke` |
 | `npm run test:regression` | Tests tagged `@regression` |
-| `npm run test:report` | Open HTML report |
+| `npm run test:report` | Open last HTML report |
 
 ## Reports
 
@@ -66,3 +70,6 @@ After execution, reports are generated at:
 - Playwright uses `data-test` as the test ID attribute (not `data-testid`).
 - COD checkout requires **two Confirm clicks** on the payment step.
 - API registration uses a nested `address` object and unique `@example.com` emails.
+- **TC-UI-SRH-001** = search results list; **TC-UI-PRD-001** = product detail page (different manual cases).
+- Invalid login tests assert error message and **no** redirect to `/account`.
+- Maintenance guide: [`../ai-prompts/how-to-use-ai-and-maintain-tests.md`](../ai-prompts/how-to-use-ai-and-maintain-tests.md)

@@ -10,7 +10,18 @@ class LoginPage extends BasePage {
   }
 
   async open() {
-    await this.goto('/auth/login');
+    try {
+      await this.goto('/auth/login');
+    } catch (error) {
+      if (!String(error.message).includes('interrupted')) {
+        throw error;
+      }
+    }
+
+    if (this.page.url().includes('/account')) {
+      return;
+    }
+
     await this.emailInput.waitFor({ state: 'visible' });
   }
 
@@ -27,6 +38,7 @@ class LoginPage extends BasePage {
     }
 
     await this.submitButton.click();
+    await this.loginError.waitFor({ state: 'visible', timeout: 8_000 });
   }
 }
 

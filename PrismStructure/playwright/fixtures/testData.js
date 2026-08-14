@@ -17,6 +17,18 @@ const DEFAULT_ADDRESS = {
   state: 'New York',
 };
 
+/** Fallback search terms when demo catalog stock changes on the live site. */
+const IN_STOCK_SEARCH_KEYWORDS = [
+  'Saw',
+  'Hammer',
+  'Screwdriver',
+  'Tape',
+  'WD-40',
+  'Bolt',
+  'Drill',
+  'Pliers',
+];
+
 function uniqueEmail(prefix = 'qa.auto') {
   const stamp = Date.now();
   const random = Math.floor(Math.random() * 10_000);
@@ -84,6 +96,7 @@ function buildInvoicePayload(cartId, overrides = {}) {
 module.exports = {
   DEFAULT_CUSTOMER,
   DEFAULT_ADDRESS,
+  IN_STOCK_SEARCH_KEYWORDS,
   uniqueEmail,
   buildRegistrationUser,
   buildUiRegistrationUser,
