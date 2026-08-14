@@ -10,7 +10,8 @@ PrismStructure/
 ├── package.json
 ├── playwright/
 │   ├── api/ApiClient.js          # REST API helper
-│   ├── fixtures/testData.js      # Dynamic test data
+│   ├── fixtures/testData.js      # Shared test data
+│   ├── helpers/uiFlows.js        # Reusable login / cart flows
 │   ├── pages/                    # Page objects (UI)
 │   └── tests/
 │       ├── ui/                   # 8 UI tests (@smoke / @regression)

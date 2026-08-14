@@ -16,13 +16,14 @@ const FALLBACK_CUSTOMER = {
 
 /** Register a unique user and log in (most reliable for shared demo environment). */
 async function registerAndLogin(page) {
+  const { expect } = require('@playwright/test');
   const user = buildUiRegistrationUser();
   const registerPage = new RegisterPage(page);
   const loginPage = new LoginPage(page);
 
   await registerPage.open();
   await registerPage.register(user);
-  await loginPage.open();
+  await expect(page).toHaveURL(/\/auth\/login/, { timeout: 20_000 });
   await loginPage.login(user.email, user.password);
 
   return user;
@@ -40,7 +41,7 @@ async function loginAsCustomer(page) {
     await loginPage.submitButton.click();
 
     const reachedAccount = await page
-      .waitForURL(/\/account/, { timeout: 12_000 })
+      .waitForURL(/\/account/, { timeout: 5_000 })
       .then(() => true)
       .catch(() => false);
 

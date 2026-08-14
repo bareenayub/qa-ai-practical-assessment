@@ -1,6 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
-const { DEFAULT_CUSTOMER, DEFAULT_ADDRESS } = require('../../fixtures/testData');
+const { DEFAULT_ADDRESS } = require('../../fixtures/testData');
 const { HomePage } = require('../../pages/HomePage');
 const { InvoicePage } = require('../../pages/InvoicePage');
 const { loginAsCustomer, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
@@ -8,16 +8,18 @@ const { loginAsCustomer, addFirstSearchResultToCart, openCart } = require('../..
 /** Manual traceability: TC-INV-001 | Regression */
 test.describe('Invoice Verification @regression', () => {
   test('TC-UI-INV-001: Verify invoice details after successful COD order', async ({ page }) => {
+    test.setTimeout(120_000);
+
     const homePage = new HomePage(page);
     const invoicePage = new InvoicePage(page);
 
-    await loginAsCustomer(page);
+    const customer = await loginAsCustomer(page);
     await addFirstSearchResultToCart(page, 'Hammer');
     const checkoutPage = await openCart(page);
 
     await checkoutPage.proceedThroughWizard({
-      email: DEFAULT_CUSTOMER.email,
-      password: DEFAULT_CUSTOMER.password,
+      email: customer.email,
+      password: customer.password,
       address: DEFAULT_ADDRESS,
     });
     await checkoutPage.completeCashOnDelivery();

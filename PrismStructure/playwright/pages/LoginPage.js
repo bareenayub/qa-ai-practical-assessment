@@ -14,13 +14,19 @@ class LoginPage extends BasePage {
     await this.emailInput.waitFor({ state: 'visible' });
   }
 
-  async login(email, password) {
+  async login(email, password, { expectSuccess = true } = {}) {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
-    await Promise.all([
-      this.page.waitForURL(/\/account/, { timeout: 30_000 }),
-      this.submitButton.click(),
-    ]);
+
+    if (expectSuccess) {
+      await Promise.all([
+        this.page.waitForURL(/\/account/, { timeout: 30_000 }),
+        this.submitButton.click(),
+      ]);
+      return;
+    }
+
+    await this.submitButton.click();
   }
 }
 

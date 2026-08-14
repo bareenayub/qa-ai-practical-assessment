@@ -1,6 +1,6 @@
 const { expect } = require('@playwright/test');
 const { BasePage } = require('./BasePage');
-const { HomePage } = require('./HomePage');
+const { InvoicePage } = require('./InvoicePage');
 
 class CheckoutPage extends BasePage {
   constructor(page) {
@@ -86,25 +86,29 @@ class CheckoutPage extends BasePage {
     await this.confirmButton().click();
     await expect(this.page.getByText(/payment was successful/i)).toBeVisible({ timeout: 20_000 });
 
-    await expect(this.confirmButton()).toBeEnabled({ timeout: 15_000 });
+    const confirmButton = this.confirmButton();
+    await expect(confirmButton).toBeEnabled({ timeout: 15_000 });
 
-    const invoiceRequest = this.page.waitForResponse(
-      (response) =>
-        response.url().toLowerCase().includes('invoice') &&
-        response.request().method() === 'POST' &&
-        [200, 201].includes(response.status()),
-      { timeout: 45_000 },
-    );
+    const invoiceRequest = this.page
+      .waitForResponse(
+        (response) =>
+          response.url().includes('api.practicesoftwaretesting.com/invoices') &&
+          response.request().method() === 'POST' &&
+          [200, 201].includes(response.status()),
+        { timeout: 30_000 },
+      )
+      .catch(() => null);
 
-    await this.confirmButton().click();
+    await confirmButton.click();
 
-    try {
-      const response = await invoiceRequest;
+    const response = await invoiceRequest;
+    if (response) {
       const body = await response.json();
       this.lastInvoiceNumber = body.invoice_number || body.invoiceNumber || body.id;
-    } catch {
-      // Invoice number will be resolved from My Invoices if not returned on the page.
     }
+
+    const invoiceOnPage = this.page.locator('#invoice-number, [data-test="invoice-number"]').first();
+    await invoiceOnPage.waitFor({ state: 'visible', timeout: 15_000 }).catch(() => {});
   }
 
   async getInvoiceNumber() {
@@ -121,10 +125,12 @@ class CheckoutPage extends BasePage {
       return (await onPage.textContent())?.trim() ?? '';
     }
 
-    const homePage = new HomePage(this.page);
-    await homePage.openMyInvoices();
-    await this.page.getByRole('link', { name: 'Details' }).first().click();
-    return (await this.page.getByTestId('invoice-number').inputValue()).trim();
+    const invoicePage = new InvoicePage(this.page);
+    await invoicePage.openList();
+    await invoicePage.openLatestInvoice();
+    const invoiceNumber = (await invoicePage.invoiceNumber.inputValue()).trim();
+    this.lastInvoiceNumber = invoiceNumber;
+    return invoiceNumber;
   }
 }
 
