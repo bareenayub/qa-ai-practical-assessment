@@ -2,6 +2,8 @@
 const { defineConfig, devices } = require('@playwright/test');
 const path = require('path');
 
+const isHeadedRun = process.argv.includes('--headed') || process.env.PW_HEADED === '1';
+
 module.exports = defineConfig({
   testDir: './playwright/tests',
   fullyParallel: false,
@@ -23,6 +25,9 @@ module.exports = defineConfig({
     video: 'retain-on-failure',
     actionTimeout: 15_000,
     navigationTimeout: 30_000,
+    launchOptions: {
+      slowMo: isHeadedRun ? 250 : 0,
+    },
   },
   projects: [
     {

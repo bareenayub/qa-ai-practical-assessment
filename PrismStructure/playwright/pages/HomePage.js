@@ -19,11 +19,10 @@ class HomePage extends BasePage {
   }
 
   async search(keyword) {
-    await this.highlightFill(this.searchInput, keyword, `Search for "${keyword}"`);
-    await demoPause(this.page, 600);
+    await this.highlightType(this.searchInput, keyword, `Type search keyword "${keyword}"`);
     await this.highlightClick(this.searchSubmit, 'Click Search');
     await this.productCards.first().waitFor({ state: 'visible' });
-    await demoPause(this.page, 600);
+    await demoPause(this.page, 800);
   }
 
   async openFirstProduct() {

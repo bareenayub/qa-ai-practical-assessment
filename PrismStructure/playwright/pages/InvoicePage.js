@@ -1,5 +1,6 @@
 const { expect } = require('@playwright/test');
 const { BasePage } = require('./BasePage');
+const { pauseForInvoiceView } = require('../helpers/demoPause');
 
 class InvoicePage extends BasePage {
   constructor(page) {
@@ -17,6 +18,7 @@ class InvoicePage extends BasePage {
     await this.step('TC-INV-001: Open My Invoices');
     await this.goto('/account/invoices');
     await this.pageTitle.waitFor({ state: 'visible' });
+    await pauseForInvoiceView(this.page, 'My Invoices — review the list');
   }
 
   async waitForInvoiceRow(timeout = 10_000) {
@@ -27,6 +29,7 @@ class InvoicePage extends BasePage {
     await this.waitForInvoiceRow();
     await this.highlightClick(this.detailsLinks.first(), 'Open latest invoice — Details');
     await this.invoiceNumber.waitFor({ state: 'visible' });
+    await pauseForInvoiceView(this.page, 'Invoice detail — review number, total, and payment');
   }
 
   async openInvoiceByNumber(invoiceNumber) {
@@ -35,6 +38,7 @@ class InvoicePage extends BasePage {
     await this.highlightClick(row.getByRole('link', { name: 'Details' }), `Open invoice ${invoiceNumber}`);
     await expect(this.page.getByText(/doesn't exist/i)).not.toBeVisible({ timeout: 3_000 }).catch(() => {});
     await this.invoiceNumber.waitFor({ state: 'visible', timeout: 10_000 });
+    await pauseForInvoiceView(this.page, `Invoice ${invoiceNumber} — review details`);
   }
 
   async openInvoiceWithRetry(invoiceNumber, attempts = 3) {
@@ -63,6 +67,7 @@ class InvoicePage extends BasePage {
     await expect(this.invoiceNumber).toHaveValue(invoiceNumber);
     await expect(this.paymentMethod).toHaveValue(/Cash on Delivery/i);
     await expect(this.total).not.toHaveValue('');
+    await pauseForInvoiceView(this.page, 'Invoice verified — Cash on Delivery, total shown');
   }
 }
 

@@ -6,6 +6,8 @@
  * TC-UI-SRH-001 → TC-SRH-001 | TC-UI-PRD-001 → TC-PRD-001
  * TC-UI-CRT-001 → TC-CRT-001 | TC-UI-CHK-001 → TC-CHK-001
  * TC-UI-INV-001 → TC-INV-001 | TC-UI-NEG-001 → TC-NEG-001
+ *
+ * Headed demo: register once in 03-registration; later tests reuse the same user via loginAsSuiteUser().
  */
 
 const { expect } = require('@playwright/test');
@@ -15,6 +17,7 @@ const { HomePage } = require('../pages/HomePage');
 const { ProductPage } = require('../pages/ProductPage');
 const { CheckoutPage } = require('../pages/CheckoutPage');
 const { showStepBanner } = require('./demoPause');
+const { rememberSuiteUser, getSuiteUser, withCheckoutAddress } = require('./sharedSession');
 const { DEFAULT_CUSTOMER, buildUiRegistrationUser, IN_STOCK_SEARCH_KEYWORDS, DEFAULT_ADDRESS } = require('../fixtures/testData');
 
 const FALLBACK_CUSTOMER = {
@@ -22,11 +25,7 @@ const FALLBACK_CUSTOMER = {
   password: 'welcome01',
 };
 
-function withCheckoutAddress(customer) {
-  return { ...DEFAULT_ADDRESS, ...customer, ...(customer.address || {}) };
-}
-
-/** TC-REG-001 precondition: register only (ends on login page). */
+/** TC-REG-001: register only (ends on login page). */
 async function registerUser(page) {
   const user = buildUiRegistrationUser();
   const registerPage = new RegisterPage(page);
@@ -39,7 +38,7 @@ async function registerUser(page) {
   return user;
 }
 
-/** TC-LOG-001 steps: home → sign in → login with known credentials. */
+/** TC-LOG-001: home → sign in → login with known credentials. */
 async function loginWithCredentials(page, user) {
   const homePage = new HomePage(page);
   const loginPage = new LoginPage(page);
@@ -50,12 +49,41 @@ async function loginWithCredentials(page, user) {
   await loginPage.open();
   await loginPage.login(user.email, user.password);
 
-  return user;
+  return withCheckoutAddress(user);
 }
 
 /**
- * Authenticated session for cart/checkout/invoice tests.
- * Tries demo accounts first; if login fails, registers a fresh user and logs in.
+ * Log in with the user created in 03-registration (no re-registration).
+ * Skips login when the suite session is already active.
+ */
+async function loginAsSuiteUser(page) {
+  let user = getSuiteUser();
+  const loginPage = new LoginPage(page);
+  const homePage = new HomePage(page);
+
+  if (!user) {
+    await showStepBanner(page, 'Suite user missing — registering once for this run');
+    user = rememberSuiteUser(await registerUser(page));
+  }
+
+  await homePage.open();
+  if (await homePage.userMenu.isVisible({ timeout: 2_000 }).catch(() => false)) {
+    return withCheckoutAddress(user);
+  }
+
+  await loginPage.step('Sign in with suite user');
+  await loginPage.open();
+
+  if (page.url().includes('/account') && !page.url().includes('/auth/')) {
+    return withCheckoutAddress(user);
+  }
+
+  await loginPage.login(user.email, user.password);
+  return withCheckoutAddress(user);
+}
+
+/**
+ * Fallback for isolated test runs: demo accounts, then register+login if needed.
  */
 async function ensureLoggedIn(page) {
   const loginPage = new LoginPage(page);
@@ -80,21 +108,12 @@ async function ensureLoggedIn(page) {
     }
   }
 
-  await showStepBanner(page, 'Demo login unavailable — registering a fresh test user');
-  const user = await registerUser(page);
-  await loginPage.login(user.email, user.password);
-  return withCheckoutAddress(user);
+  return loginAsSuiteUser(page);
 }
 
-/** Register + login in one flow (used by checkout/invoice E2E paths). */
+/** @deprecated Prefer loginAsSuiteUser after 01-registration in headed demos. */
 async function registerAndLogin(page) {
-  const user = await registerUser(page);
-  const loginPage = new LoginPage(page);
-
-  await loginPage.step('Sign in with newly registered credentials');
-  await loginPage.login(user.email, user.password);
-
-  return withCheckoutAddress(user);
+  return loginAsSuiteUser(page);
 }
 
 /** @deprecated Alias for ensureLoggedIn. */
@@ -154,6 +173,7 @@ async function openCart(page) {
 module.exports = {
   registerUser,
   loginWithCredentials,
+  loginAsSuiteUser,
   ensureLoggedIn,
   registerAndLogin,
   loginAsCustomer,

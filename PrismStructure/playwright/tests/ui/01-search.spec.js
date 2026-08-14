@@ -1,11 +1,9 @@
 // @ts-check
-const { test, expect } = require('@playwright/test');
+// Demo order: 01 — guest search
+const { test, expect } = require('../../fixtures/demoTest');
 const { HomePage } = require('../../pages/HomePage');
 
-/** Manual traceability: TC-SRH-001 | Regression
- * Scope: search results grid only (keyword → matching cards on listing page).
- * Different from TC-UI-PRD-001, which opens the product detail page.
- */
+/** Manual traceability: TC-SRH-001 | Regression */
 test.describe('Product Search @regression', () => {
   test('TC-UI-SRH-001: Search returns matching products for a valid keyword', async ({ page }) => {
     const homePage = new HomePage(page);

@@ -35,7 +35,7 @@ This guide explains how AI was used to build the Toolshop QA assessment, where h
 ## Good AI Prompts for Maintenance
 
 1. **"Read the failure in `reports/playwright/results.json` and fix the smallest change in the page object."**
-2. **"Compare `FunctionalTestCase.csv` TC-CHK-001 with `checkout.spec.js` and list gaps."**
+2. **"Compare `FunctionalTestCase.csv` TC-CHK-001 with `06-checkout.spec.js` and list gaps."**
 3. **"Run only `TC-UI-INV-001` headed and suggest why payment method assertion failed."**
 4. **"Add a regression test for invalid email login without changing passing smoke tests."**
 
@@ -100,6 +100,10 @@ Terminal runs use headless Chromium (faster). To **see** the browser:
 ```bash
 npm run test:ui:headed
 ```
+
+UI specs are prefixed `01-` … `08-` so headed runs follow the user journey (negative scenarios run last).
+
+Registration runs **once** in `01-registration`; later tests call `loginAsSuiteUser()` (no re-registration). Forms pause ~1.5s before Submit in headed mode so you can review filled fields.
 
 Search and registration include a short pause in headed mode so typed text is visible before submit.
 

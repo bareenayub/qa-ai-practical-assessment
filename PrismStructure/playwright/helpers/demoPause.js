@@ -81,6 +81,16 @@ async function highlightClick(page, locator, label) {
   await clearHighlights(page);
 }
 
+/** Short headed pause so the user can review a filled form before Submit. */
+async function pauseBeforeSubmit(page, label = 'Review form, then click Submit') {
+  if (!isHeadedRun()) {
+    return;
+  }
+
+  await showStepBanner(page, label);
+  await demoPause(page, 2_000);
+}
+
 async function highlightFill(page, locator, value, label) {
   if (isHeadedRun()) {
     await showStepBanner(page, label);
@@ -91,6 +101,35 @@ async function highlightFill(page, locator, value, label) {
   await locator.fill(value);
 }
 
+/** Type into a field character-by-character in headed mode (e.g. search bar). */
+async function highlightType(page, locator, value, label) {
+  if (isHeadedRun()) {
+    await showStepBanner(page, label);
+    await locator.scrollIntoViewIfNeeded();
+    await locator.clear();
+    await locator.pressSequentially(value, { delay: 120 });
+    await demoPause(page, 800);
+    return;
+  }
+
+  await locator.fill(value);
+}
+
+/** Pause on invoice list/detail so headed demos can read the page. */
+async function pauseForInvoiceView(page, message = 'Review invoice details') {
+  if (!isHeadedRun()) {
+    return;
+  }
+
+  await showStepBanner(page, message);
+  await demoPause(page, 2_500);
+}
+
+/** Pause between UI demo tests so the headed flow is easier to follow. */
+async function pauseBetweenTests(page, ms = 2_000) {
+  await demoPause(page, ms);
+}
+
 module.exports = {
   demoPause,
   isHeadedRun,
@@ -99,4 +138,8 @@ module.exports = {
   highlightLocator,
   highlightClick,
   highlightFill,
+  highlightType,
+  pauseBeforeSubmit,
+  pauseForInvoiceView,
+  pauseBetweenTests,
 };

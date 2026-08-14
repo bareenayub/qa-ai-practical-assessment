@@ -1,16 +1,19 @@
 // @ts-check
-const { test, expect } = require('@playwright/test');
+// Demo order: 04 — login (uses user from 03-registration)
+const { test, expect } = require('../../fixtures/demoTest');
 const { HomePage } = require('../../pages/HomePage');
 const { registerUser, loginWithCredentials } = require('../../helpers/uiFlows');
+const { getSuiteUser, rememberSuiteUser } = require('../../helpers/sharedSession');
 
-/**
- * Manual traceability: TC-LOG-001 | Smoke
- * Precondition: account exists (registered once). Test focuses on Sign In flow only.
- */
+/** Manual traceability: TC-LOG-001 | Smoke */
 test.describe('Login @smoke', () => {
   test('TC-UI-LOG-001: Successful login with valid registered credentials', async ({ page }) => {
     const homePage = new HomePage(page);
-    const user = await registerUser(page);
+
+    let user = getSuiteUser();
+    if (!user) {
+      user = rememberSuiteUser(await registerUser(page));
+    }
 
     await loginWithCredentials(page, user);
 

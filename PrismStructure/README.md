@@ -15,7 +15,7 @@ PrismStructure/
 │   ├── helpers/demoPause.js      # Short pause in headed mode for visibility
 │   ├── pages/                    # Page objects (UI)
 │   └── tests/
-│       ├── ui/                   # 8 UI tests (@smoke / @regression)
+│       ├── ui/                   # 8 UI tests (01-…08- demo order, @smoke / @regression)
 │       └── api/                  # 10 API tests (@smoke / @regression)
 └── reports/playwright/           # HTML + JSON execution reports
 ```

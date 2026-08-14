@@ -3,6 +3,8 @@ const {
   showStepBanner,
   highlightClick,
   highlightFill,
+  highlightType,
+  pauseBeforeSubmit,
 } = require('../helpers/demoPause');
 
 class BasePage {
@@ -31,6 +33,15 @@ class BasePage {
   /** Highlight a field, fill it, for headed demo runs. */
   async highlightFill(locator, value, label) {
     await highlightFill(this.page, locator, value, label);
+  }
+
+  async highlightType(locator, value, label) {
+    await highlightType(this.page, locator, value, label);
+  }
+
+  /** Headed pause before clicking a form Submit button. */
+  async pauseBeforeSubmit(label) {
+    await pauseBeforeSubmit(this.page, label);
   }
 }
 

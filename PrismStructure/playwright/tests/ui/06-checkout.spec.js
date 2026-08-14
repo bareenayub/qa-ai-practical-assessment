@@ -1,15 +1,14 @@
 // @ts-check
-const { test, expect } = require('@playwright/test');
-const { registerAndLogin, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
+// Demo order: 06 — COD checkout
+const { test, expect } = require('../../fixtures/demoTest');
+const { loginAsSuiteUser, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
 
-/** Manual traceability: TC-CHK-001 | Smoke
- * Uses fresh registration for a reliable COD checkout on the shared demo site.
- */
+/** Manual traceability: TC-CHK-001 | Smoke */
 test.describe('Checkout @smoke', () => {
   test('TC-UI-CHK-001: Complete checkout using Cash on Delivery payment', async ({ page }) => {
-    test.setTimeout(120_000);
+    test.setTimeout(150_000);
 
-    const customer = await registerAndLogin(page);
+    const customer = await loginAsSuiteUser(page);
     await addFirstSearchResultToCart(page);
     const checkoutPage = await openCart(page);
 

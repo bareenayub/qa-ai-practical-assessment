@@ -26,14 +26,22 @@ class LoginPage extends BasePage {
   }
 
   /** Fill credentials and click Login without asserting navigation (for negative tests). */
-  async attemptLogin(email, password) {
+  async attemptLogin(email, password, { submitLabel = 'Click Login / Sign In', skipDemoPause = false } = {}) {
+    if (skipDemoPause) {
+      await this.emailInput.fill(email);
+      await this.passwordInput.fill(password);
+      await this.submitButton.click();
+      return;
+    }
+
     await this.highlightFill(this.emailInput, email, 'Enter registered email');
     await this.highlightFill(this.passwordInput, password, 'Enter password');
-    await this.highlightClick(this.submitButton, 'Click Login / Sign In');
+    await this.pauseBeforeSubmit('Review credentials, then click Login');
+    await this.highlightClick(this.submitButton, submitLabel);
   }
 
-  async login(email, password, { expectSuccess = true } = {}) {
-    await this.attemptLogin(email, password);
+  async login(email, password, { expectSuccess = true, submitLabel } = {}) {
+    await this.attemptLogin(email, password, { submitLabel });
 
     if (expectSuccess) {
       await this.page.waitForURL(/\/account/, { timeout: 30_000 });

@@ -1,7 +1,7 @@
 const { expect } = require('@playwright/test');
 const { BasePage } = require('./BasePage');
 const { InvoicePage } = require('./InvoicePage');
-const { highlightLocator, isHeadedRun, clearHighlights, demoPause } = require('../helpers/demoPause');
+const { highlightLocator, isHeadedRun, clearHighlights, demoPause, pauseForInvoiceView } = require('../helpers/demoPause');
 
 class CheckoutPage extends BasePage {
   constructor(page) {
@@ -28,7 +28,10 @@ class CheckoutPage extends BasePage {
   }
 
   confirmButton() {
-    return this.page.getByRole('button', { name: /^confirm$/i });
+    return this.page
+      .getByRole('button', { name: /^confirm$/i })
+      .or(this.page.getByTestId('finish'))
+      .first();
   }
 
   async waitForCartStep() {
@@ -44,6 +47,7 @@ class CheckoutPage extends BasePage {
   async loginInCheckout(email, password) {
     await this.highlightFill(this.emailInput, email, 'Checkout sign-in: enter email');
     await this.highlightFill(this.passwordInput, password, 'Checkout sign-in: enter password');
+    await this.pauseBeforeSubmit('Review checkout login, then click Login');
     await this.highlightClick(this.loginSubmit, 'Checkout sign-in: click Login');
 
     await this.page.waitForURL(/\/checkout/, { timeout: 15_000 }).catch(() => {});
@@ -152,18 +156,20 @@ class CheckoutPage extends BasePage {
     await this.selectPaymentMethod('cash-on-delivery');
     await this.clickConfirmWithLabel('Confirm payment check (1st Confirm)');
     await expect(this.page.getByText(/payment was successful/i)).toBeVisible({ timeout: 15_000 });
+    await expect(this.confirmButton()).toBeEnabled({ timeout: 10_000 });
 
     await this.submitOrderConfirm();
 
-    if (!this.lastInvoiceNumber) {
-      const confirmStillVisible = await this.confirmButton().isVisible({ timeout: 2_000 }).catch(() => false);
-      if (confirmStillVisible) {
-        await this.submitOrderConfirm();
-      }
+    if (!this.lastInvoiceNumber && (await this.confirmButton().isVisible({ timeout: 2_000 }).catch(() => false))) {
+      await this.submitOrderConfirm();
     }
 
     if (!this.lastInvoiceNumber) {
-      await this.readInvoiceNumberFromPage();
+      try {
+        await this.getInvoiceNumber();
+      } catch {
+        // Fall through to assertion below.
+      }
     }
 
     expect(this.lastInvoiceNumber, 'Invoice number should be created after COD checkout').toBeTruthy();
@@ -178,32 +184,34 @@ class CheckoutPage extends BasePage {
   async clickConfirmWithLabel(label) {
     const confirmButton = this.confirmButton();
     await expect(confirmButton).toBeEnabled({ timeout: 15_000 });
+
     if (isHeadedRun()) {
       await highlightLocator(this.page, confirmButton, label);
-    }
-    await confirmButton.click();
-    if (isHeadedRun()) {
-      await demoPause(this.page, 700);
+      await confirmButton.click();
+      await demoPause(this.page, 500);
       await clearHighlights(this.page);
+      return;
     }
+
+    await confirmButton.click();
   }
 
   async submitOrderConfirm() {
     const confirmButton = this.confirmButton();
     await expect(confirmButton).toBeEnabled({ timeout: 15_000 });
-
-    const invoiceRequest = this.page.waitForResponse(
-      (response) => this.invoicePostMatcher(response),
-      { timeout: 30_000 },
-    );
+    await confirmButton.scrollIntoViewIfNeeded();
 
     if (isHeadedRun()) {
       await highlightLocator(this.page, confirmButton, 'Confirm order and create invoice (2nd Confirm)');
     }
 
-    await confirmButton.click();
+    const response = await Promise.all([
+      this.page
+        .waitForResponse((res) => this.invoicePostMatcher(res), { timeout: 30_000 })
+        .catch(() => null),
+      confirmButton.click(),
+    ]).then(([invoiceResponse]) => invoiceResponse);
 
-    const response = await invoiceRequest.catch(() => null);
     if (response) {
       const body = await response.json();
       this.lastInvoiceId = body.id ?? null;
@@ -212,8 +220,18 @@ class CheckoutPage extends BasePage {
 
     await this.readInvoiceNumberFromPage();
 
+    if (!this.lastInvoiceNumber) {
+      await expect(this.page.locator('#invoice-number, [data-test="invoice-number"]'))
+        .toBeVisible({ timeout: 8_000 })
+        .catch(() => {});
+      await this.readInvoiceNumberFromPage();
+    }
+
+    if (this.lastInvoiceNumber) {
+      await pauseForInvoiceView(this.page, `Order complete — invoice ${this.lastInvoiceNumber}`);
+    }
+
     if (isHeadedRun()) {
-      await demoPause(this.page, 700);
       await clearHighlights(this.page);
     }
   }

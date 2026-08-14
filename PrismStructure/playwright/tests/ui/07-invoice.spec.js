@@ -1,19 +1,17 @@
 // @ts-check
-const { test, expect } = require('@playwright/test');
+// Demo order: 07 — invoice verification
+const { test, expect } = require('../../fixtures/demoTest');
 const { InvoicePage } = require('../../pages/InvoicePage');
-const { registerAndLogin, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
+const { loginAsSuiteUser, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
 
-/**
- * Manual traceability: TC-INV-001 | Regression
- * Flow: login → cart → COD checkout → verify invoice details.
- */
+/** Manual traceability: TC-INV-001 | Regression */
 test.describe('Invoice Verification @regression', () => {
   test('TC-UI-INV-001: Verify invoice details after successful COD order', async ({ page }) => {
-    test.setTimeout(120_000);
+    test.setTimeout(150_000);
 
     const invoicePage = new InvoicePage(page);
 
-    const customer = await registerAndLogin(page);
+    const customer = await loginAsSuiteUser(page);
     await addFirstSearchResultToCart(page);
     const checkoutPage = await openCart(page);
 

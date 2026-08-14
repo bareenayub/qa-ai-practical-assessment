@@ -66,6 +66,10 @@ npm run test:ui:headed
 npm run test:api
 ```
 
+UI specs run in demo order: **01 search → 02 product details** (guest, CSV cases 3–4), then **03 registration → 04 login** (CSV cases 1–2), then **05 cart → 06 checkout → 07 invoice → 08 negative**.
+
+Headed mode adds pauses between tests, slow typing in search, and `slowMo` so the flow is easier to watch. Registration happens once in `03-registration`; later tests log in with that user.
+
 ### Manual Testing
 
 1. Open `FunctionalTestCase.csv` in Excel, Google Sheets, or any CSV editor.
