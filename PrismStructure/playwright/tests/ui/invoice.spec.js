@@ -5,11 +5,11 @@ const { registerAndLogin, addFirstSearchResultToCart, openCart } = require('../.
 
 /**
  * Manual traceability: TC-INV-001 | Regression
- * Full purchase path: register → cart → COD checkout → invoice verification.
+ * Flow: login → cart → COD checkout → verify invoice details.
  */
 test.describe('Invoice Verification @regression', () => {
   test('TC-UI-INV-001: Verify invoice details after successful COD order', async ({ page }) => {
-    test.setTimeout(90_000);
+    test.setTimeout(120_000);
 
     const invoicePage = new InvoicePage(page);
 

@@ -1,11 +1,11 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
-const { loginAsCustomer, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
+const { ensureLoggedIn, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
 
 /** Manual traceability: TC-CRT-001 | Smoke */
 test.describe('Add to Cart @smoke', () => {
   test('TC-UI-CRT-001: Add a single in-stock product to cart while logged in', async ({ page }) => {
-    await loginAsCustomer(page);
+    await ensureLoggedIn(page);
     const productName = await addFirstSearchResultToCart(page, 'Hammer');
     const checkoutPage = await openCart(page);
 

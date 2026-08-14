@@ -2,7 +2,9 @@
 const { test, expect } = require('@playwright/test');
 const { registerAndLogin, addFirstSearchResultToCart, openCart } = require('../../helpers/uiFlows');
 
-/** Manual traceability: TC-CHK-001 | Smoke */
+/** Manual traceability: TC-CHK-001 | Smoke
+ * Uses fresh registration for a reliable COD checkout on the shared demo site.
+ */
 test.describe('Checkout @smoke', () => {
   test('TC-UI-CHK-001: Complete checkout using Cash on Delivery payment', async ({ page }) => {
     test.setTimeout(120_000);

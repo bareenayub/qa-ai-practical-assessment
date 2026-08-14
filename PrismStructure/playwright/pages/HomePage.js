@@ -19,15 +19,15 @@ class HomePage extends BasePage {
   }
 
   async search(keyword) {
-    await this.searchInput.fill(keyword);
-    await demoPause(this.page, 1200);
-    await this.searchSubmit.click();
+    await this.highlightFill(this.searchInput, keyword, `Search for "${keyword}"`);
+    await demoPause(this.page, 600);
+    await this.highlightClick(this.searchSubmit, 'Click Search');
     await this.productCards.first().waitFor({ state: 'visible' });
-    await demoPause(this.page, 800);
+    await demoPause(this.page, 600);
   }
 
   async openFirstProduct() {
-    await this.productCards.first().click();
+    await this.highlightClick(this.productCards.first(), 'Open first product from results');
   }
 
   async openMyInvoices() {

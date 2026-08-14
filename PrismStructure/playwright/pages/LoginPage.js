@@ -25,19 +25,21 @@ class LoginPage extends BasePage {
     await this.emailInput.waitFor({ state: 'visible' });
   }
 
+  /** Fill credentials and click Login without asserting navigation (for negative tests). */
+  async attemptLogin(email, password) {
+    await this.highlightFill(this.emailInput, email, 'Enter registered email');
+    await this.highlightFill(this.passwordInput, password, 'Enter password');
+    await this.highlightClick(this.submitButton, 'Click Login / Sign In');
+  }
+
   async login(email, password, { expectSuccess = true } = {}) {
-    await this.emailInput.fill(email);
-    await this.passwordInput.fill(password);
+    await this.attemptLogin(email, password);
 
     if (expectSuccess) {
-      await Promise.all([
-        this.page.waitForURL(/\/account/, { timeout: 30_000 }),
-        this.submitButton.click(),
-      ]);
+      await this.page.waitForURL(/\/account/, { timeout: 30_000 });
       return;
     }
 
-    await this.submitButton.click();
     await this.loginError.waitFor({ state: 'visible', timeout: 8_000 });
   }
 }

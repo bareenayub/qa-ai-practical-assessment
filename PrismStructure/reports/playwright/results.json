@@ -3,7 +3,9 @@
     "argv": [
       "C:\\nvm4w\\nodejs\\node.exe",
       "D:\\qa-ai-practical-assessment\\PrismStructure\\node_modules\\@playwright\\test\\cli.js",
-      "test"
+      "test",
+      "playwright/tests/ui",
+      "--headed"
     ],
     "configFile": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright.config.js",
     "rootDir": "D:/qa-ai-practical-assessment/PrismStructure/playwright/tests",
@@ -72,468 +74,6 @@
   },
   "suites": [
     {
-      "title": "api\\auth.spec.js",
-      "file": "api/auth.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "API Authentication @smoke",
-          "file": "api/auth.spec.js",
-          "line": 10,
-          "column": 6,
-          "specs": [
-            {
-              "title": "TC-API-LOG-001: Login and obtain bearer token",
-              "ok": true,
-              "tags": [
-                "smoke"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2230,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:39:58.847Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "427269f70a03218eb4b5-c84ed5b7f954e66688a2",
-              "file": "api/auth.spec.js",
-              "line": 22,
-              "column": 3
-            },
-            {
-              "title": "TC-API-CRT-001: Create a new cart with bearer token",
-              "ok": true,
-              "tags": [
-                "smoke"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2166,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:40:01.138Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "427269f70a03218eb4b5-f4f969c359f643329607",
-              "file": "api/auth.spec.js",
-              "line": 34,
-              "column": 3
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "api\\cart.spec.js",
-      "file": "api/cart.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "API Cart @smoke",
-          "file": "api/cart.spec.js",
-          "line": 9,
-          "column": 6,
-          "specs": [
-            {
-              "title": "TC-API-CAR-001: Add product to cart and verify contents",
-              "ok": true,
-              "tags": [
-                "smoke"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1255,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:40:03.326Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "d8b46cfdb3e675e3e1bb-1ec26699ffb2ea3a766c",
-              "file": "api/cart.spec.js",
-              "line": 34,
-              "column": 3
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "api\\invoice.spec.js",
-      "file": "api/invoice.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "API Invoice @regression",
-          "file": "api/invoice.spec.js",
-          "line": 11,
-          "column": 6,
-          "specs": [
-            {
-              "title": "TC-API-INV-001: Generate invoice with COD payment details",
-              "ok": true,
-              "tags": [
-                "regression"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3410,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:40:07.448Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "506d0ed00540a278c2cb-63e02d5dacf06836f831",
-              "file": "api/invoice.spec.js",
-              "line": 37,
-              "column": 3
-            },
-            {
-              "title": "TC-API-INV-002: List and retrieve invoice by ID",
-              "ok": true,
-              "tags": [
-                "regression"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3007,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:40:12.144Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "506d0ed00540a278c2cb-099cfeffd051b1d01a44",
-              "file": "api/invoice.spec.js",
-              "line": 53,
-              "column": 3
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "api\\negative.spec.js",
-      "file": "api/negative.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "API Negative Scenarios @regression",
-          "file": "api/negative.spec.js",
-          "line": 9,
-          "column": 6,
-          "specs": [
-            {
-              "title": "TC-API-NEG-001: Reject invalid login credentials",
-              "ok": true,
-              "tags": [
-                "regression"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 564,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:40:15.168Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2ed5abac98cf8bc71272-74bd8e5291fd4e269b1c",
-              "file": "api/negative.spec.js",
-              "line": 21,
-              "column": 3
-            },
-            {
-              "title": "TC-API-NEG-002: Reject invoice creation without authentication",
-              "ok": true,
-              "tags": [
-                "regression"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1063,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:40:15.746Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2ed5abac98cf8bc71272-6099b8f09a091661f8b1",
-              "file": "api/negative.spec.js",
-              "line": 28,
-              "column": 3
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "api\\products.spec.js",
-      "file": "api/products.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "API Products @regression",
-          "file": "api/products.spec.js",
-          "line": 8,
-          "column": 6,
-          "specs": [
-            {
-              "title": "TC-API-PRD-001: Retrieve product catalog",
-              "ok": true,
-              "tags": [
-                "regression"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 558,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:40:16.823Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f1553ef5d21af5dfea45-b53318d763200b35da5b",
-              "file": "api/products.spec.js",
-              "line": 20,
-              "column": 3
-            },
-            {
-              "title": "TC-API-SRH-001: Search products by keyword",
-              "ok": true,
-              "tags": [
-                "regression"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 555,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:40:17.392Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f1553ef5d21af5dfea45-1b071644a4a5a8f6651d",
-              "file": "api/products.spec.js",
-              "line": 33,
-              "column": 3
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "api\\registration.spec.js",
-      "file": "api/registration.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "API User Registration @smoke",
-          "file": "api/registration.spec.js",
-          "line": 10,
-          "column": 6,
-          "specs": [
-            {
-              "title": "TC-API-REG-001: Register a new user via API",
-              "ok": true,
-              "tags": [
-                "smoke"
-              ],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 840,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-08-14T08:40:17.960Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1f7bc537fe7cec5cb853-185ef1c55730f1336869",
-              "file": "api/registration.spec.js",
-              "line": 22,
-              "column": 3
-            }
-          ]
-        }
-      ]
-    },
-    {
       "title": "ui\\addToCart.spec.js",
       "file": "ui/addToCart.spec.js",
       "column": 0,
@@ -564,12 +104,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 18987,
+                      "duration": 14424,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:40:18.824Z",
+                      "startTime": "2026-08-14T09:24:38.632Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -596,7 +136,7 @@
         {
           "title": "Checkout @smoke",
           "file": "ui/checkout.spec.js",
-          "line": 6,
+          "line": 8,
           "column": 6,
           "specs": [
             {
@@ -617,12 +157,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 22679,
+                      "duration": 17345,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:40:37.886Z",
+                      "startTime": "2026-08-14T09:24:53.366Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -632,7 +172,7 @@
               ],
               "id": "14b42a966831425e1cec-148ddac0a1463b374c44",
               "file": "ui/checkout.spec.js",
-              "line": 7,
+              "line": 9,
               "column": 3
             }
           ]
@@ -660,7 +200,7 @@
               ],
               "tests": [
                 {
-                  "timeout": 90000,
+                  "timeout": 120000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
@@ -670,12 +210,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 28743,
+                      "duration": 23734,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:41:00.576Z",
+                      "startTime": "2026-08-14T09:25:10.736Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -702,7 +242,7 @@
         {
           "title": "Login @smoke",
           "file": "ui/login.spec.js",
-          "line": 7,
+          "line": 10,
           "column": 6,
           "specs": [
             {
@@ -723,12 +263,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 7408,
+                      "duration": 11577,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:41:29.330Z",
+                      "startTime": "2026-08-14T09:25:34.495Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -738,7 +278,7 @@
               ],
               "id": "5112dfcf3bb7f6303d71-e679fbdb00dc96aaf642",
               "file": "ui/login.spec.js",
-              "line": 8,
+              "line": 11,
               "column": 3
             }
           ]
@@ -776,12 +316,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 17345,
+                      "duration": 18627,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:41:36.751Z",
+                      "startTime": "2026-08-14T09:25:46.094Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -829,12 +369,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 10978,
+                      "duration": 5695,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:41:54.110Z",
+                      "startTime": "2026-08-14T09:26:04.738Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -861,7 +401,7 @@
         {
           "title": "User Registration @smoke",
           "file": "ui/registration.spec.js",
-          "line": 11,
+          "line": 10,
           "column": 6,
           "specs": [
             {
@@ -882,12 +422,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6213,
+                      "duration": 4648,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:42:05.099Z",
+                      "startTime": "2026-08-14T09:26:10.457Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -897,7 +437,7 @@
               ],
               "id": "0928cb4591fb8c9328a1-c1d60356f99be1c1a4bf",
               "file": "ui/registration.spec.js",
-              "line": 12,
+              "line": 11,
               "column": 3
             }
           ]
@@ -935,12 +475,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4222,
+                      "duration": 4008,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:42:11.321Z",
+                      "startTime": "2026-08-14T09:26:15.128Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -960,9 +500,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-08-14T08:39:58.488Z",
-    "duration": 137158.712,
-    "expected": 18,
+    "startTime": "2026-08-14T09:24:38.178Z",
+    "duration": 101262.258,
+    "expected": 8,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

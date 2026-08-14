@@ -1,6 +1,7 @@
 const { expect } = require('@playwright/test');
 const { BasePage } = require('./BasePage');
 const { InvoicePage } = require('./InvoicePage');
+const { highlightLocator, isHeadedRun, clearHighlights, demoPause } = require('../helpers/demoPause');
 
 class CheckoutPage extends BasePage {
   constructor(page) {
@@ -37,13 +38,16 @@ class CheckoutPage extends BasePage {
   async clickProceed(stepNumber) {
     const button = this.page.getByTestId(`proceed-${stepNumber}`);
     await expect(button).toBeEnabled({ timeout: 20_000 });
-    await button.click();
+    await this.highlightClick(button, `Proceed to checkout — step ${stepNumber}`);
   }
 
   async loginInCheckout(email, password) {
-    await this.emailInput.fill(email);
-    await this.passwordInput.fill(password);
-    await this.loginSubmit.click();
+    await this.highlightFill(this.emailInput, email, 'Checkout sign-in: enter email');
+    await this.highlightFill(this.passwordInput, password, 'Checkout sign-in: enter password');
+    await this.highlightClick(this.loginSubmit, 'Checkout sign-in: click Login');
+
+    await this.page.waitForURL(/\/checkout/, { timeout: 15_000 }).catch(() => {});
+    await this.proceedStep2.waitFor({ state: 'visible', timeout: 10_000 }).catch(() => {});
   }
 
   async setStateValue(stateValue) {
@@ -75,12 +79,13 @@ class CheckoutPage extends BasePage {
   }
 
   async fillAddress(address) {
+    await this.step('TC-CHK-001: Enter billing address');
     await this.country.selectOption(address.country);
     await expect(this.postalCode).toBeVisible({ timeout: 10_000 });
     await expect(this.houseNumber).toBeVisible({ timeout: 10_000 });
 
-    await this.postalCode.fill(address.postal_code);
-    await this.houseNumber.fill(String(address.house_number));
+    await this.highlightFill(this.postalCode, address.postal_code, 'Enter postal code');
+    await this.highlightFill(this.houseNumber, String(address.house_number), 'Enter house number');
     await this.houseNumber.press('Tab');
 
     const streetFilled = await this.street
@@ -89,8 +94,8 @@ class CheckoutPage extends BasePage {
       .catch(() => false);
 
     if (!streetFilled) {
-      await this.street.fill(address.street);
-      await this.city.fill(address.city);
+      await this.highlightFill(this.street, address.street, 'Enter street');
+      await this.highlightFill(this.city, address.city, 'Enter city');
       await this.setStateValue(address.state);
       await this.postalCode.press('Tab');
     } else {
@@ -107,17 +112,18 @@ class CheckoutPage extends BasePage {
       await this.loginInCheckout(email, password);
     }
 
-    if (await this.proceedStep2.isEnabled({ timeout: 5_000 }).catch(() => false)) {
-      await this.proceedStep2.click();
+    if (await this.proceedStep2.isEnabled({ timeout: 8_000 }).catch(() => false)) {
+      await this.highlightClick(this.proceedStep2, 'Proceed past sign-in step');
       return;
     }
 
-    if (await this.alreadyLoggedInProceed.isEnabled({ timeout: 5_000 }).catch(() => false)) {
-      await this.alreadyLoggedInProceed.click();
+    if (await this.alreadyLoggedInProceed.isEnabled({ timeout: 8_000 }).catch(() => false)) {
+      await this.highlightClick(this.alreadyLoggedInProceed, 'Proceed to checkout (already signed in)');
     }
   }
 
   async proceedThroughWizard({ email, password, address }) {
+    await this.step('TC-CHK-001: Open cart and start checkout');
     await this.clickProceed(1);
     await this.advanceFromSignInStep(email, password);
 
@@ -135,7 +141,7 @@ class CheckoutPage extends BasePage {
     }
 
     await expect(this.proceedStep3).toBeEnabled({ timeout: 20_000 });
-    await this.proceedStep3.click();
+    await this.highlightClick(this.proceedStep3, 'Proceed to payment step');
   }
 
   /** COD: 1st Confirm validates payment, 2nd Confirm creates the invoice. */
@@ -143,18 +149,16 @@ class CheckoutPage extends BasePage {
     this.lastInvoiceId = null;
     this.lastInvoiceNumber = null;
 
-    await this.paymentMethod.selectOption('cash-on-delivery');
-    await expect(this.paymentMethod).toHaveValue('cash-on-delivery');
-
-    await this.confirmButton().click();
+    await this.selectPaymentMethod('cash-on-delivery');
+    await this.clickConfirmWithLabel('Confirm payment check (1st Confirm)');
     await expect(this.page.getByText(/payment was successful/i)).toBeVisible({ timeout: 15_000 });
 
-    await this.captureInvoiceFromSecondConfirm();
+    await this.submitOrderConfirm();
 
     if (!this.lastInvoiceNumber) {
       const confirmStillVisible = await this.confirmButton().isVisible({ timeout: 2_000 }).catch(() => false);
       if (confirmStillVisible) {
-        await this.captureInvoiceFromSecondConfirm();
+        await this.submitOrderConfirm();
       }
     }
 
@@ -165,26 +169,41 @@ class CheckoutPage extends BasePage {
     expect(this.lastInvoiceNumber, 'Invoice number should be created after COD checkout').toBeTruthy();
   }
 
-  invoicePostMatcher(response) {
-    return (
-      response.url().includes('/invoices') &&
-      response.request().method() === 'POST' &&
-      [200, 201].includes(response.status())
-    );
+  async selectPaymentMethod(value) {
+    await this.step('TC-CHK-001: Select Cash on Delivery');
+    await this.paymentMethod.selectOption(value);
+    await expect(this.paymentMethod).toHaveValue(value);
   }
 
-  async captureInvoiceFromSecondConfirm() {
+  async clickConfirmWithLabel(label) {
     const confirmButton = this.confirmButton();
     await expect(confirmButton).toBeEnabled({ timeout: 15_000 });
-    await confirmButton.scrollIntoViewIfNeeded();
+    if (isHeadedRun()) {
+      await highlightLocator(this.page, confirmButton, label);
+    }
+    await confirmButton.click();
+    if (isHeadedRun()) {
+      await demoPause(this.page, 700);
+      await clearHighlights(this.page);
+    }
+  }
 
-    const invoiceRequest = this.page
-      .waitForResponse((response) => this.invoicePostMatcher(response), { timeout: 45_000 })
-      .catch(() => null);
+  async submitOrderConfirm() {
+    const confirmButton = this.confirmButton();
+    await expect(confirmButton).toBeEnabled({ timeout: 15_000 });
+
+    const invoiceRequest = this.page.waitForResponse(
+      (response) => this.invoicePostMatcher(response),
+      { timeout: 30_000 },
+    );
+
+    if (isHeadedRun()) {
+      await highlightLocator(this.page, confirmButton, 'Confirm order and create invoice (2nd Confirm)');
+    }
 
     await confirmButton.click();
 
-    const response = await invoiceRequest;
+    const response = await invoiceRequest.catch(() => null);
     if (response) {
       const body = await response.json();
       this.lastInvoiceId = body.id ?? null;
@@ -192,6 +211,19 @@ class CheckoutPage extends BasePage {
     }
 
     await this.readInvoiceNumberFromPage();
+
+    if (isHeadedRun()) {
+      await demoPause(this.page, 700);
+      await clearHighlights(this.page);
+    }
+  }
+
+  invoicePostMatcher(response) {
+    return (
+      response.url().includes('/invoices') &&
+      response.request().method() === 'POST' &&
+      [200, 201].includes(response.status())
+    );
   }
 
   async readInvoiceNumberFromPage() {

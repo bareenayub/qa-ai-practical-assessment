@@ -49,23 +49,23 @@ class RegisterPage extends BasePage {
   }
 
   async register(user) {
-    await this.firstName.fill(user.first_name);
-    await this.lastName.fill(user.last_name);
-    await this.dob.fill(user.dob);
+    await this.highlightFill(this.firstName, user.first_name, 'Enter first name');
+    await this.highlightFill(this.lastName, user.last_name, 'Enter last name');
+    await this.highlightFill(this.dob, user.dob, 'Enter date of birth');
     await this.country.selectOption(user.country);
-    await this.postalCode.fill(user.postal_code);
-    await this.houseNumber.fill(user.house_number);
-    await this.street.fill(user.street);
-    await this.city.fill(user.city);
+    await this.highlightFill(this.postalCode, user.postal_code, 'Enter postal code');
+    await this.highlightFill(this.houseNumber, user.house_number, 'Enter house number');
+    await this.highlightFill(this.street, user.street, 'Enter street');
+    await this.highlightFill(this.city, user.city, 'Enter city');
     await this.setStateValue(user.state);
-    await this.phone.fill(user.phone);
-    await this.email.fill(user.email);
-    await this.password.fill(user.password);
-    await demoPause(this.page, 1200);
+    await this.highlightFill(this.phone, user.phone, 'Enter phone');
+    await this.highlightFill(this.email, user.email, 'Enter email');
+    await this.highlightFill(this.password, user.password, 'Enter password');
+    await demoPause(this.page, 800);
 
     await Promise.all([
       this.page.waitForURL(/\/auth\/login/, { timeout: 30_000 }),
-      this.submitButton.click(),
+      this.highlightClick(this.submitButton, 'Submit registration'),
     ]);
   }
 }

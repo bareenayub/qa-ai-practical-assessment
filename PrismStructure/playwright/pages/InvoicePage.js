@@ -14,6 +14,7 @@ class InvoicePage extends BasePage {
   }
 
   async openList() {
+    await this.step('TC-INV-001: Open My Invoices');
     await this.goto('/account/invoices');
     await this.pageTitle.waitFor({ state: 'visible' });
   }
@@ -24,14 +25,14 @@ class InvoicePage extends BasePage {
 
   async openLatestInvoice() {
     await this.waitForInvoiceRow();
-    await this.detailsLinks.first().click();
+    await this.highlightClick(this.detailsLinks.first(), 'Open latest invoice — Details');
     await this.invoiceNumber.waitFor({ state: 'visible' });
   }
 
   async openInvoiceByNumber(invoiceNumber) {
     const row = this.page.getByRole('row').filter({ hasText: invoiceNumber });
     await expect(row).toBeVisible({ timeout: 10_000 });
-    await row.getByRole('link', { name: 'Details' }).click();
+    await this.highlightClick(row.getByRole('link', { name: 'Details' }), `Open invoice ${invoiceNumber}`);
     await expect(this.page.getByText(/doesn't exist/i)).not.toBeVisible({ timeout: 3_000 }).catch(() => {});
     await this.invoiceNumber.waitFor({ state: 'visible', timeout: 10_000 });
   }
