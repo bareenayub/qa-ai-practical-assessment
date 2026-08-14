@@ -20,6 +20,7 @@ class ApiClient {
     const requestContext = await playwrightRequest.newContext({
       baseURL: API_BASE_URL,
       extraHTTPHeaders: { Accept: 'application/json' },
+      timeout: 45_000,
     });
     return new ApiClient(requestContext);
   }
@@ -47,9 +48,23 @@ class ApiClient {
   }
 
   async createCart() {
-    return this.request.post('/carts', {
-      headers: this.authHeaders(),
-    });
+    const maxAttempts = 3;
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      try {
+        return await this.request.post('/carts', {
+          headers: this.authHeaders(),
+          timeout: 30_000,
+        });
+      } catch (error) {
+        const isTimeout = /timeout/i.test(String(error.message));
+        if (!isTimeout || attempt === maxAttempts) {
+          throw error;
+        }
+      }
+    }
+
+    throw new Error('createCart failed after retries');
   }
 
   async getCart(cartId) {

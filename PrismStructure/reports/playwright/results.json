@@ -81,7 +81,7 @@
         {
           "title": "API Authentication @smoke",
           "file": "api/auth.spec.js",
-          "line": 11,
+          "line": 10,
           "column": 6,
           "specs": [
             {
@@ -102,12 +102,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2375,
+                      "duration": 2230,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:58:58.990Z",
+                      "startTime": "2026-08-14T08:39:58.847Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -117,7 +117,7 @@
               ],
               "id": "427269f70a03218eb4b5-c84ed5b7f954e66688a2",
               "file": "api/auth.spec.js",
-              "line": 23,
+              "line": 22,
               "column": 3
             },
             {
@@ -138,12 +138,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2245,
+                      "duration": 2166,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:01.412Z",
+                      "startTime": "2026-08-14T08:40:01.138Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -153,7 +153,7 @@
               ],
               "id": "427269f70a03218eb4b5-f4f969c359f643329607",
               "file": "api/auth.spec.js",
-              "line": 35,
+              "line": 34,
               "column": 3
             }
           ]
@@ -191,12 +191,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1238,
+                      "duration": 1255,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:03.681Z",
+                      "startTime": "2026-08-14T08:40:03.326Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -244,12 +244,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2458,
+                      "duration": 3410,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:07.787Z",
+                      "startTime": "2026-08-14T08:40:07.448Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -280,12 +280,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3033,
+                      "duration": 3007,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:11.553Z",
+                      "startTime": "2026-08-14T08:40:12.144Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -333,12 +333,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 638,
+                      "duration": 564,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:14.604Z",
+                      "startTime": "2026-08-14T08:40:15.168Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -369,12 +369,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1185,
+                      "duration": 1063,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:15.255Z",
+                      "startTime": "2026-08-14T08:40:15.746Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -422,12 +422,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 593,
+                      "duration": 558,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:16.463Z",
+                      "startTime": "2026-08-14T08:40:16.823Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -458,12 +458,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 622,
+                      "duration": 555,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:17.069Z",
+                      "startTime": "2026-08-14T08:40:17.392Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -511,12 +511,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 763,
+                      "duration": 840,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:17.709Z",
+                      "startTime": "2026-08-14T08:40:17.960Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -564,12 +564,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 14996,
+                      "duration": 18987,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:18.504Z",
+                      "startTime": "2026-08-14T08:40:18.824Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -617,12 +617,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 14569,
+                      "duration": 22679,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:33.595Z",
+                      "startTime": "2026-08-14T08:40:37.886Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -654,7 +654,7 @@
           "specs": [
             {
               "title": "TC-UI-INV-001: Verify invoice details after successful COD order",
-              "ok": false,
+              "ok": true,
               "tags": [
                 "regression"
               ],
@@ -669,58 +669,18 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 26790,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('invoice-number')\nExpected: \u001b[32m\"INV-2026000026\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('invoice-number')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('invoice-number')\nExpected: \u001b[32m\"INV-2026000026\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('invoice-number')\u001b[22m\n\n    at InvoicePage.openInvoiceByNumber (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js:35:38)\n    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js:38:5",
-                        "location": {
-                          "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js",
-                          "column": 38,
-                          "line": 35
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39m..\\pages\\InvoicePage.js:35\n\n\u001b[0m \u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoiceRow)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m invoiceRow\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Details'\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39minvoiceNumber)\u001b[33m.\u001b[39mtoHaveValue(invoiceNumber)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m }\n \u001b[90m 38 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js",
-                            "column": 38,
-                            "line": 35
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('invoice-number')\nExpected: \u001b[32m\"INV-2026000026\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('invoice-number')\u001b[22m\n\n\n\u001b[90m   at \u001b[39m..\\pages\\InvoicePage.js:35\n\n\u001b[0m \u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m expect(invoiceRow)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m invoiceRow\u001b[33m.\u001b[39mgetByRole(\u001b[32m'link'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Details'\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39minvoiceNumber)\u001b[33m.\u001b[39mtoHaveValue(invoiceNumber)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m   }\n \u001b[90m 37 |\u001b[39m }\n \u001b[90m 38 |\u001b[39m\u001b[0m\n\u001b[2m    at InvoicePage.openInvoiceByNumber (D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js:35:38)\u001b[22m\n\u001b[2m    at D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\tests\\ui\\invoice.spec.js:38:5\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 28743,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T07:59:48.175Z",
+                      "startTime": "2026-08-14T08:41:00.576Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-invoice-Invoice-Verific-8e610--after-successful-COD-order-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-invoice-Invoice-Verific-8e610--after-successful-COD-order-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "D:\\qa-ai-practical-assessment\\PrismStructure\\test-results\\ui-invoice-Invoice-Verific-8e610--after-successful-COD-order-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "D:\\qa-ai-practical-assessment\\PrismStructure\\playwright\\pages\\InvoicePage.js",
-                        "column": 38,
-                        "line": 35
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "63db7c426f66f39f8c53-9b5c7d43a143dda4e79b",
@@ -760,15 +720,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 11361,
+                      "duration": 7408,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:00:15.363Z",
+                      "startTime": "2026-08-14T08:41:29.330Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -813,15 +773,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 15686,
+                      "duration": 17345,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:00:26.826Z",
+                      "startTime": "2026-08-14T08:41:36.751Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -866,15 +826,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4974,
+                      "duration": 10978,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:00:42.527Z",
+                      "startTime": "2026-08-14T08:41:54.110Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -919,15 +879,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5280,
+                      "duration": 6213,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:00:47.513Z",
+                      "startTime": "2026-08-14T08:42:05.099Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -972,15 +932,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4472,
+                      "duration": 4222,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-14T08:00:52.806Z",
+                      "startTime": "2026-08-14T08:42:11.321Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1000,11 +960,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-08-14T07:58:58.526Z",
-    "duration": 118818.937,
-    "expected": 17,
+    "startTime": "2026-08-14T08:39:58.488Z",
+    "duration": 137158.712,
+    "expected": 18,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 0,
     "flaky": 0
   }
 }

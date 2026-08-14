@@ -2,7 +2,6 @@
 const { test, expect } = require('@playwright/test');
 const { ApiClient } = require('../../api/ApiClient');
 const { registerAndLoginApi } = require('../../helpers/apiAuth');
-const { buildRegistrationUser } = require('../../fixtures/testData');
 
 /**
  * Manual traceability: TC-LOG-001 (API variant)
@@ -33,12 +32,8 @@ test.describe('API Authentication @smoke', () => {
   });
 
   test('TC-API-CRT-001: Create a new cart with bearer token', async () => {
-    const user = buildRegistrationUser();
-    const registerResponse = await api.register(user);
-    expect(registerResponse.status()).toBe(201);
-
-    const loginResponse = await api.login(user.email, user.password);
-    expect(loginResponse.status()).toBe(200);
+    await registerAndLoginApi(api);
+    expect(api.token).toBeTruthy();
 
     const cartResponse = await api.createCart();
     expect(cartResponse.status()).toBe(201);

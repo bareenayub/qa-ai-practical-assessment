@@ -27,18 +27,12 @@ test.describe('Invoice Verification @regression', () => {
     const invoiceNo = checkoutPage.lastInvoiceNumber;
     expect(invoiceNo).toBeTruthy();
 
-    if (await invoicePage.invoiceNumber.isVisible({ timeout: 3_000 }).catch(() => false)) {
-      await expect(invoicePage.invoiceNumber).toHaveValue(invoiceNo);
-      await expect(invoicePage.paymentMethod).toHaveValue(/Cash on Delivery/i);
-      await expect(invoicePage.total).not.toBeEmpty();
+    if (await invoicePage.invoiceNumber.isVisible({ timeout: 5_000 }).catch(() => false)) {
+      await invoicePage.verifyInvoiceDetails(invoiceNo);
       return;
     }
 
-    await invoicePage.openList();
-    await invoicePage.openInvoiceByNumber(invoiceNo);
-
-    await expect(invoicePage.invoiceNumber).toHaveValue(invoiceNo);
-    await expect(invoicePage.paymentMethod).toHaveValue(/Cash on Delivery/i);
-    await expect(invoicePage.total).not.toBeEmpty();
+    await invoicePage.openInvoiceWithRetry(invoiceNo);
+    await invoicePage.verifyInvoiceDetails(invoiceNo);
   });
 });

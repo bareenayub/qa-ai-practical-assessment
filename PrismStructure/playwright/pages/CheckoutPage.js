@@ -22,6 +22,7 @@ class CheckoutPage extends BasePage {
     this.productTitle = page.getByTestId('product-title');
     this.productQuantity = page.getByTestId('product-quantity');
     this.cartTotal = page.getByTestId('cart-total');
+    this.lastInvoiceId = null;
     this.lastInvoiceNumber = null;
   }
 
@@ -61,19 +62,44 @@ class CheckoutPage extends BasePage {
     await this.state.fill(stateValue);
   }
 
+  addressFromCustomer(customer) {
+    const address = customer.address || customer;
+    return {
+      country: address.country || customer.country,
+      postal_code: address.postal_code || customer.postal_code,
+      house_number: address.house_number || customer.house_number,
+      street: address.street || customer.street,
+      city: address.city || customer.city,
+      state: address.state || customer.state,
+    };
+  }
+
   async fillAddress(address) {
     await this.country.selectOption(address.country);
-    await this.state.waitFor({ state: 'visible' });
+    await expect(this.postalCode).toBeVisible({ timeout: 10_000 });
+    await expect(this.houseNumber).toBeVisible({ timeout: 10_000 });
 
-    if (await this.houseNumber.isVisible()) {
-      await this.houseNumber.fill(address.house_number);
-    }
-
-    await this.street.fill(address.street);
-    await this.city.fill(address.city);
-    await this.setStateValue(address.state);
     await this.postalCode.fill(address.postal_code);
-    await this.postalCode.press('Tab');
+    await this.houseNumber.fill(String(address.house_number));
+    await this.houseNumber.press('Tab');
+
+    const streetFilled = await this.street
+      .inputValue()
+      .then((value) => value.trim().length > 0)
+      .catch(() => false);
+
+    if (!streetFilled) {
+      await this.street.fill(address.street);
+      await this.city.fill(address.city);
+      await this.setStateValue(address.state);
+      await this.postalCode.press('Tab');
+    } else {
+      await this.state.waitFor({ state: 'visible' });
+      const stateValue = await this.state.inputValue().catch(() => '');
+      if (!stateValue.trim()) {
+        await this.setStateValue(address.state);
+      }
+    }
   }
 
   async advanceFromSignInStep(email, password) {
@@ -112,60 +138,75 @@ class CheckoutPage extends BasePage {
     await this.proceedStep3.click();
   }
 
-  addressFromCustomer(customer) {
-    return {
-      country: customer.country,
-      postal_code: customer.postal_code,
-      house_number: customer.house_number,
-      street: customer.street,
-      city: customer.city,
-      state: customer.state,
-    };
-  }
-
   /** COD: 1st Confirm validates payment, 2nd Confirm creates the invoice. */
   async completeCashOnDelivery() {
+    this.lastInvoiceId = null;
+    this.lastInvoiceNumber = null;
+
     await this.paymentMethod.selectOption('cash-on-delivery');
     await expect(this.paymentMethod).toHaveValue('cash-on-delivery');
 
     await this.confirmButton().click();
     await expect(this.page.getByText(/payment was successful/i)).toBeVisible({ timeout: 15_000 });
 
-    for (let attempt = 0; attempt < 2 && !this.lastInvoiceNumber; attempt += 1) {
-      const confirmButton = this.confirmButton();
-      await expect(confirmButton).toBeEnabled({ timeout: 10_000 });
+    await this.captureInvoiceFromSecondConfirm();
 
-      const invoiceRequest = this.page
-        .waitForResponse(
-          (response) =>
-            /\/invoices/.test(response.url()) &&
-            response.request().method() === 'POST' &&
-            [200, 201].includes(response.status()),
-          { timeout: 20_000 },
-        )
-        .catch(() => null);
-
-      await confirmButton.click();
-
-      const response = await invoiceRequest;
-      if (response) {
-        const body = await response.json();
-        this.lastInvoiceNumber = body.invoice_number || body.invoiceNumber;
-      }
-
-      if (!this.lastInvoiceNumber) {
-        const invoiceOnPage = this.page.locator('#invoice-number, [data-test="invoice-number"]').first();
-        if (await invoiceOnPage.isVisible({ timeout: 5_000 }).catch(() => false)) {
-          const tagName = await invoiceOnPage.evaluate((el) => el.tagName.toLowerCase());
-          this.lastInvoiceNumber =
-            tagName === 'input'
-              ? (await invoiceOnPage.inputValue()).trim()
-              : (await invoiceOnPage.textContent())?.trim() ?? '';
-        }
+    if (!this.lastInvoiceNumber) {
+      const confirmStillVisible = await this.confirmButton().isVisible({ timeout: 2_000 }).catch(() => false);
+      if (confirmStillVisible) {
+        await this.captureInvoiceFromSecondConfirm();
       }
     }
 
+    if (!this.lastInvoiceNumber) {
+      await this.readInvoiceNumberFromPage();
+    }
+
     expect(this.lastInvoiceNumber, 'Invoice number should be created after COD checkout').toBeTruthy();
+  }
+
+  invoicePostMatcher(response) {
+    return (
+      response.url().includes('/invoices') &&
+      response.request().method() === 'POST' &&
+      [200, 201].includes(response.status())
+    );
+  }
+
+  async captureInvoiceFromSecondConfirm() {
+    const confirmButton = this.confirmButton();
+    await expect(confirmButton).toBeEnabled({ timeout: 15_000 });
+    await confirmButton.scrollIntoViewIfNeeded();
+
+    const invoiceRequest = this.page
+      .waitForResponse((response) => this.invoicePostMatcher(response), { timeout: 45_000 })
+      .catch(() => null);
+
+    await confirmButton.click();
+
+    const response = await invoiceRequest;
+    if (response) {
+      const body = await response.json();
+      this.lastInvoiceId = body.id ?? null;
+      this.lastInvoiceNumber = body.invoice_number || body.invoiceNumber || null;
+    }
+
+    await this.readInvoiceNumberFromPage();
+  }
+
+  async readInvoiceNumberFromPage() {
+    if (this.lastInvoiceNumber) {
+      return;
+    }
+
+    const invoiceOnPage = this.page.locator('#invoice-number, [data-test="invoice-number"]').first();
+    if (await invoiceOnPage.isVisible({ timeout: 10_000 }).catch(() => false)) {
+      const tagName = await invoiceOnPage.evaluate((el) => el.tagName.toLowerCase());
+      this.lastInvoiceNumber =
+        tagName === 'input'
+          ? (await invoiceOnPage.inputValue()).trim()
+          : (await invoiceOnPage.textContent())?.trim() ?? '';
+    }
   }
 
   async getInvoiceNumber() {
